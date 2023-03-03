@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
 
 Vue.use(VueRouter);
 
@@ -8,7 +7,6 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
     redirect: { name: "my-inventory" },
   },
   {
@@ -30,7 +28,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/LegoSetsView.vue"
+        /* webpackChunkName: "about" */ "../views/MyInventoryView.vue"
       ),
   },
 ];
