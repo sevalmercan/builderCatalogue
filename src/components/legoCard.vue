@@ -49,7 +49,8 @@ export default {
         font-family: 'Roboto', sans-serif;
         width: 100%;
         border: solid;
-        padding: 30px;
+        padding: 15px;
+        border: #8000806e solid;
 
         .piece-id {
             margin: auto 0;
@@ -60,6 +61,7 @@ export default {
             background-clip: text;
             color: black;
             font-size: 20px;
+            border-bottom: #8000806e solid;
         }
 
         .color-palette {
@@ -71,7 +73,6 @@ export default {
             .circle {
                 width: 45px;
                 height: 45px;
-
                 -moz-border-radius: 50px;
                 -webkit-border-radius: 50px;
                 border-radius: 50px;
@@ -79,8 +80,8 @@ export default {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-right: 3px;
-                margin-bottom: 3px;
+                margin-right: 5px;
+                margin-bottom: 5px;
             }
         }
     }
