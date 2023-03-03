@@ -1,8 +1,14 @@
 <template>
     <div class="inventory">
-        <div v-for="piece in collection" :key="piece.pieceId">
-            <legoCard :pieceId="piece.pieceId" :variants="piece.variants" />
+        <div class="total-brick">
+            <h1 class="title">Total Brick : {{ userInventory.brickCount }} </h1>
         </div>
+        <div class="inventory-cards">
+            <div v-for="piece in collection" :key="piece.pieceId">
+                <legoCard :pieceId="piece.pieceId" :variants="piece.variants" />
+            </div>
+        </div>
+
     </div>
 </template>
 <script>
@@ -29,8 +35,18 @@ export default {
 <style lang="scss" scoped >
 .inventory {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+
+    .total-brick {
+        display: flex;
+        justify-content: center;
+    }
+
+    .inventory-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
 
 }
 </style>
