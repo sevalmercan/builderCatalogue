@@ -6,12 +6,13 @@
         <img src="./assets/images/header.png" alt="Lego Header">
       </div>
       <div class="content">
+        <router-view />
       </div>
       <div class="main-footer">
         <img src="./assets/images/footer.png" alt="Lego Header">
       </div>
     </div>
-    <router-view />
+
   </div>
 </template>
 <script>
@@ -27,6 +28,10 @@ export default {
 </script>
 
 <style lang="scss" scoped >
+.content {
+  padding: 30px;
+}
+
 .main-footer {
   position: fixed;
   bottom: 0;
