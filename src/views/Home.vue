@@ -13,19 +13,17 @@
 
 import navBar from '@/components/navBar.vue';
 import axios from 'axios'
+import { legoStore } from "../common/store"
 export default {
     name: "HomeView",
+
     components: {
         navBar
     },
-    data() {
-        return {
-            userInventory: []
-        }
-    }, mounted() {
+    mounted() {
         axios
             .get('https://d16m5wbro86fg2.cloudfront.net/api/user/by-id/6d6bc9f2-a762-4a30-8d9a-52cf8d8373fc')
-            .then(response => (this.userInventory = response))
+            .then(response => (legoStore.userInventory = response.data))
     }
 };
 </script>
