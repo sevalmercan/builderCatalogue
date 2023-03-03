@@ -1,32 +1,35 @@
 <template>
   <div id="app">
-    <!-- <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav> -->
+    <div>
+      <nav-bar />
+      <div class="main-header">
+        <img src="./assets/images/header.png" alt="Lego Header">
+      </div>
+      <div class="content">
+      </div>
+      <div class="main-footer">
+        <img src="./assets/images/footer.png" alt="Lego Header">
+      </div>
+    </div>
     <router-view />
   </div>
 </template>
+<script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+import navBar from '@/components/navBar.vue';
 
-nav {
-  padding: 30px;
-}
+export default {
+  name: "HomeView",
+  components: {
+    navBar
+  },
+};
+</script>
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+<style lang="scss" scoped >
+.main-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 </style>

@@ -9,15 +9,29 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
+    redirect: { name: "my-inventory" },
   },
   {
-    path: "/about",
-    name: "about",
+    path: "/lego-sets",
+    name: "lego-sets",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../views/LegoSetsView.vue"
+      ),
+  },
+  {
+    path: "/my-inventory",
+    name: "my-inventory",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/LegoSetsView.vue"
+      ),
   },
 ];
 

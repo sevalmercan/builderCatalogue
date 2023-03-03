@@ -6,12 +6,16 @@
             </b-navbar-item>
         </template>
         <template #start>
-            <b-navbar-item href="#">
-                <b-button rounded outlined size="is-medium" type="is-danger is-light"> My Inventory</b-button>
-            </b-navbar-item>
-            <b-navbar-item href="#">
-                <b-button rounded outlined size="is-medium" type="is-danger is-light"> Lego Sets</b-button>
-            </b-navbar-item>
+            <router-link to="/my-inventory">
+                <b-navbar-item>
+                    <b-button rounded outlined size="is-medium" type="is-danger is-light"> My Inventory</b-button>
+                </b-navbar-item>
+            </router-link>
+            <router-link to="/lego-sets"> <b-navbar-item>
+                    <b-button rounded outlined size="is-medium" type="is-danger is-light">
+                        Lego Sets
+                    </b-button>
+                </b-navbar-item></router-link>
         </template>
         <template #end>
             <b-navbar-item tag="div">
