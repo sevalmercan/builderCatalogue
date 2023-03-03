@@ -8,11 +8,11 @@
         <template #start>
             <router-link to="/my-inventory">
                 <b-navbar-item>
-                    <b-button rounded outlined size="is-medium"> My Inventory</b-button>
+                    <b-button rounded outlined type="is-primary is-light" size="is-medium"> My Inventory</b-button>
                 </b-navbar-item>
             </router-link>
             <router-link to="/lego-sets"> <b-navbar-item>
-                    <b-button rounded outlined size="is-medium">
+                    <b-button rounded outlined type="is-primary is-light" size="is-medium">
                         Lego Sets
                     </b-button>
                 </b-navbar-item></router-link>
@@ -37,11 +37,12 @@ export default {
   
 <style lang="scss" scoped >
 .main-nav {
+    background: #8000801c;
     padding: 0 30px !important;
 }
 
 ::v-deep .button.is-medium {
-    border-width: 4px;
+    border-width: 2px;
 }
 
 ::v-deep .navbar-item img {

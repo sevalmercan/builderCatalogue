@@ -4,7 +4,7 @@
             <div class="piece-id"> Piece Id : {{ pieceId }}</div>
             <div class="color-palette">
                 <div v-for="colorPiece in variants" :key="colorPiece.color">
-                    <div class="circle" :style="{ 'background': 'rgba(247, 0, 161, 0.2)' }">
+                    <div class="circle" :style="{ 'background': getColor(colorPiece.color) }">
                         {{ colorPiece.count }}
                     </div>
                 </div>
@@ -16,12 +16,18 @@
 </template>
 
 <script>
+import { colours } from '../common/colours'
 
 export default {
     name: "legoCard",
     props: {
         pieceId: String,
         variants: Array
+    },
+    methods: {
+        getColor(currentColorCode) {
+            return colours.find(color => color.code.toString() === currentColorCode).rgb
+        }
     }
 
 };
