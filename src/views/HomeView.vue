@@ -1,51 +1,34 @@
 <template>
-  <b-navbar>
-    <template #brand>
-      <b-navbar-item tag="router-link" :to="{ path: '/' }">
-        <img src="../assets/images/LegoLogo.png" alt="Lego Logo">
-      </b-navbar-item>
-    </template>
-    <template #start>
-      <b-navbar-item href="#">
-        <b-button rounded outlined size="is-medium" type="is-info is-light"> My Inventory</b-button>
-      </b-navbar-item>
-      <b-navbar-item href="#">
-        <b-button rounded outlined size="is-medium" type="is-info is-light"> Lego Sets</b-button>
-      </b-navbar-item>
-    </template>
-    <template #end>
-      <b-navbar-item tag="div">
-        <div class="buttons">
-          <a class="button is-info">
-            Log in
-          </a>
-        </div>
-      </b-navbar-item>
-    </template>
-  </b-navbar>
+  <div>
+    <nav-bar />
+    <div class="main-header">
+      <img src="../assets/images/header.png" alt="Lego Header">
+    </div>
+    <div class="content">
+
+    </div>
+    <div class="main-footer">
+      <img src="../assets/images/footer.png" alt="Lego Header">
+    </div>
+  </div>
 </template>
 
 <script>
 
+import navBar from '@/components/navBar.vue';
+
 export default {
   name: "HomeView",
   components: {
-
+    navBar
   },
 };
 </script>
 
 <style lang="scss" scoped >
-::v-deep .navbar-item img {
-  max-height: 4.2rem;
-}
-
-::v-deep .navbar-start {
-  display: flex;
-  margin: auto;
-}
-
-::v-deep .navbar-end {
-  margin-left: 0;
+.main-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 </style>
