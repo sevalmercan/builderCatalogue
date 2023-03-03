@@ -1,6 +1,5 @@
 <template>
     <div class="lego-card">
-        <img src="../assets/images/logoFrame.png" alt="Lego Frame">
         <div class="card-info">
             <div class="piece-id"> Piece Id : 3710</div>
             <div class="color-palette">
@@ -20,32 +19,24 @@
     max-width: 300px;
     margin-right: 8px;
     margin-bottom: 8px;
-    position: relative;
-    border-radius: 31px;
+    border-radius: 6px;
     overflow: hidden;
 
-    img {
-        max-height: 200px;
-    }
 
     .card-info {
         font-family: 'Roboto', sans-serif;
-        position: absolute;
         width: 100%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        border: solid;
         padding: 30px;
 
         .piece-id {
             margin: auto 0;
             display: flex;
             justify-content: center;
-            background-image: linear-gradient(to left, violet, indigo, green, blue, rgb(255, 0, 217), orange, red);
             -webkit-background-clip: text;
             -moz-background-clip: text;
             background-clip: text;
-            color: transparent;
+            color: black;
             font-size: 20px;
         }
 

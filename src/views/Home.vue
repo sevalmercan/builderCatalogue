@@ -1,9 +1,6 @@
 <template>
     <div>
         <nav-bar />
-        <div class="main-header">
-            <img src="../assets/images/header.png" alt="Lego Header">
-        </div>
         <div class="content">
             <router-view />
         </div>
@@ -15,12 +12,21 @@
 <script>
 
 import navBar from '@/components/navBar.vue';
-
+import axios from 'axios'
 export default {
     name: "HomeView",
     components: {
         navBar
     },
+    data() {
+        return {
+            userInventory: []
+        }
+    }, mounted() {
+        axios
+            .get('https://d16m5wbro86fg2.cloudfront.net/api/user/by-id/6d6bc9f2-a762-4a30-8d9a-52cf8d8373fc')
+            .then(response => (this.userInventory = response))
+    }
 };
 </script>
   

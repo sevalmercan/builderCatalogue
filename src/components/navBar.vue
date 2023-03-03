@@ -8,11 +8,11 @@
         <template #start>
             <router-link to="/my-inventory">
                 <b-navbar-item>
-                    <b-button rounded outlined size="is-medium" type="is-danger is-light"> My Inventory</b-button>
+                    <b-button rounded outlined size="is-medium" type="is-primary is-light"> My Inventory</b-button>
                 </b-navbar-item>
             </router-link>
             <router-link to="/lego-sets"> <b-navbar-item>
-                    <b-button rounded outlined size="is-medium" type="is-danger is-light">
+                    <b-button rounded outlined size="is-medium" type="is-primary is-light">
                         Lego Sets
                     </b-button>
                 </b-navbar-item></router-link>
