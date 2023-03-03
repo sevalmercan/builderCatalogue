@@ -36,6 +36,7 @@ export default {
 
 <style lang="scss" scoped >
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Roboto:wght@500&display=swap');
+@import '../assets/style/color.scss';
 
 .lego-card {
     max-width: 300px;
@@ -50,7 +51,7 @@ export default {
         width: 100%;
         border: solid;
         padding: 15px;
-        border: #8000806e solid;
+        border: $purple-primary solid;
 
         .piece-id {
             margin: auto 0;
@@ -61,7 +62,7 @@ export default {
             background-clip: text;
             color: black;
             font-size: 20px;
-            border-bottom: #8000806e solid;
+            border-bottom: $purple-primary solid;
         }
 
         .color-palette {
