@@ -4,7 +4,7 @@
             <div class="piece-id"> Piece Id : {{ pieceId }}</div>
             <div class="color-palette">
                 <div v-for="colorPiece in variants" :key="colorPiece.color">
-                    <div class="circle">
+                    <div class="circle" :style="{ 'background': 'rgba(247, 0, 161, 0.2)' }">
                         {{ colorPiece.count }}
                     </div>
                 </div>
@@ -65,7 +65,7 @@ export default {
             .circle {
                 width: 45px;
                 height: 45px;
-                background: rgba(247, 0, 161, 0.304);
+
                 -moz-border-radius: 50px;
                 -webkit-border-radius: 50px;
                 border-radius: 50px;

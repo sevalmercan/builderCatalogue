@@ -35,7 +35,7 @@ export default {
 
 .main-footer {
     position: fixed;
-    bottom: 0;
+    bottom: -6px;
     width: 100%;
 }
 </style>
