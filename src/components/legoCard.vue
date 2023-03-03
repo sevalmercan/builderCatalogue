@@ -1,17 +1,31 @@
 <template>
     <div class="lego-card">
         <div class="card-info">
-            <div class="piece-id"> Piece Id : 3710</div>
+            <div class="piece-id"> Piece Id : {{ pieceId }}</div>
             <div class="color-palette">
-                <div class="circle">
-                    9
+                <div v-for="colorPiece in variants" :key="colorPiece.color">
+                    <div class="circle">
+                        {{ colorPiece.count }}
+                    </div>
                 </div>
+
             </div>
 
         </div>
     </div>
 </template>
 
+<script>
+
+export default {
+    name: "legoCard",
+    props: {
+        pieceId: String,
+        variants: Array
+    }
+
+};
+</script>
 
 
 <style lang="scss" scoped >
@@ -46,6 +60,7 @@
             display: flex;
             margin-top: 10px;
             justify-content: center;
+            flex-wrap: wrap;
 
             .circle {
                 width: 45px;
@@ -59,6 +74,7 @@
                 justify-content: center;
                 align-items: center;
                 margin-right: 3px;
+                margin-bottom: 3px;
             }
         }
     }

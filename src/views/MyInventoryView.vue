@@ -1,6 +1,8 @@
 <template>
     <div class="inventory">
-        <legoCard />
+        <div v-for="piece in collection" :key="piece.pieceId">
+            <legoCard :pieceId="piece.pieceId" :variants="piece.variants" />
+        </div>
     </div>
 </template>
 <script>
@@ -16,6 +18,11 @@ export default {
     },
     created() {
         console.log(this.userInventory)
+    },
+    computed: {
+        collection() {
+            return this.userInventory.collection;
+        }
     }
 };
 </script>
