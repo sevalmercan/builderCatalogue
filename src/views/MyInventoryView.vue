@@ -33,13 +33,20 @@ export default {
 };
 </script>
 <style lang="scss" scoped >
+@import '../assets/style/color.scss';
+
 .inventory {
     display: flex;
     flex-direction: column;
 
+
     .total-brick {
         display: flex;
         justify-content: center;
+
+        .title {
+            color: $primar-text-color !important;
+        }
     }
 
     .inventory-cards {

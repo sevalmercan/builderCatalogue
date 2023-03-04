@@ -44,6 +44,7 @@ export default {
     margin-bottom: 8px;
     border-radius: 6px;
     overflow: hidden;
+    color: $primar-text-color;
 
 
     .card-info {
@@ -51,7 +52,7 @@ export default {
         width: 100%;
         border: solid;
         padding: 15px;
-        border: $purple-primary solid;
+        border: $button-bg solid;
 
         .piece-id {
             margin: auto 0;
@@ -60,9 +61,8 @@ export default {
             -webkit-background-clip: text;
             -moz-background-clip: text;
             background-clip: text;
-            color: black;
             font-size: 20px;
-            border-bottom: $purple-primary solid;
+            border-bottom: $button-bg solid;
         }
 
         .color-palette {
@@ -77,7 +77,6 @@ export default {
                 -moz-border-radius: 50px;
                 -webkit-border-radius: 50px;
                 border-radius: 50px;
-                color: black;
                 display: flex;
                 justify-content: center;
                 align-items: center;
