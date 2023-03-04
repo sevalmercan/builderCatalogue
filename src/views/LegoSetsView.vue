@@ -50,6 +50,7 @@ export default {
 
   .lego-set-details-container {
     width: 47%;
+    border: $button-bg solid;
 
   }
 }

@@ -11,7 +11,7 @@
         </div>
 
         <div class="piece-statistics">
-            <div class="statistic-header">
+            <!--  <div class="statistic-header">
                 <div class="s-title">
                     Set Inventory
                 </div>
@@ -19,13 +19,13 @@
                 <div class="s-title">
                     Comparing User Inventory
                 </div>
-            </div>
+            </div> -->
             <div class="piece-result">
                 <div class="circle">
                     9
                 </div>
                 <div>
-                    +5
+                    +5 available
                 </div>
             </div>
 
@@ -45,17 +45,13 @@ export default {
 @import '../assets/style/color.scss';
 
 .set-details {
-    margin-right: 8px;
-    margin-bottom: 8px;
-    border-radius: 6px;
+    margin: 3px 17px;
     overflow: hidden;
     color: $primar-text-color;
-    border: $button-bg solid;
     color: $primar-text-color;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    font-weight: bold;
+    border-bottom: $button-bg solid;
 
     .total-info {
         display: flex;
@@ -71,22 +67,23 @@ export default {
             display: flex;
             justify-content: space-around;
             margin: 5px 55px;
+            font-size: 13px;
 
             .s-title {
                 display: flex;
                 justify-content: center;
-                width: 132px;
+
                 text-align: center;
-                border: $button-bg solid;
-                border-radius: 6px;
+
             }
         }
 
         .piece-result {
             display: flex;
             align-items: center;
-            justify-content: space-around;
-            margin: 0 16%;
+            justify-content: flex-start;
+            margin: 0 67px;
+            margin-bottom: 15px;
 
             .circle {
                 width: 45px;
@@ -97,8 +94,7 @@ export default {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-right: 5px;
-                margin-bottom: 5px;
+                margin-right: 15px;
                 background: red;
 
             }
