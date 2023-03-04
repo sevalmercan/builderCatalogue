@@ -18,11 +18,17 @@
 
 import legoSetCard from '@/components/legoSetCard.vue';
 import legoSetDetails from '@/components/legoSetDetails.vue';
+import axios from 'axios'
+import { legoStore } from "../common/store"
 export default {
-
   components: {
     legoSetCard,
     legoSetDetails
+  },
+  mounted() {
+    axios
+      .get('https://d16m5wbro86fg2.cloudfront.net/api/set/by-id/040f11ab-e301-4724-bacd-50841816e06b')
+      .then(response => (legoStore.setDetails = response.data))
   }
 }
 </script>

@@ -4,6 +4,12 @@
     </div>
 </template>
 
+<script>
+import legoMixin from '@/common/legoMixin.vue';
+export default {
+    mixins: [legoMixin]
+}
+</script>
 
 <style lang="scss" scoped>
 @import '../assets/style/color.scss';
