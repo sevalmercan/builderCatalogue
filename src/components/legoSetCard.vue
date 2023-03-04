@@ -31,6 +31,7 @@
 .set-card-wrapper {
     color: $primar-text-color;
     width: 100%;
+    font-weight: bold;
 
     .lego-set-card {
 
