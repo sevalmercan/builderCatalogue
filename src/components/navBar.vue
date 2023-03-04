@@ -8,11 +8,11 @@
         <template #start>
             <router-link to="/my-inventory">
                 <b-navbar-item>
-                    <b-button rounded outlined type="is-primary is-light" size="is-medium"> My Inventory</b-button>
+                    <b-button rounded outlined size="is-medium"> My Inventory</b-button>
                 </b-navbar-item>
             </router-link>
             <router-link to="/lego-sets"> <b-navbar-item>
-                    <b-button rounded outlined type="is-primary is-light" size="is-medium">
+                    <b-button rounded outlined size="is-medium">
                         Lego Sets
                     </b-button>
                 </b-navbar-item></router-link>
@@ -20,7 +20,7 @@
         <template #end>
             <b-navbar-item tag="div">
                 <div class="buttons">
-                    <b-button rounded size="is-medium" type="is-primary "> Log in</b-button>
+                    <b-button rounded size="is-medium"> Log in</b-button>
 
                 </div>
             </b-navbar-item>
@@ -36,13 +36,18 @@ export default {
 </script>
   
 <style lang="scss" scoped >
+@import '../assets/style/color.scss';
+
 .main-nav {
-    background: #8000801c;
+    background: $main-page-bg;
     padding: 0 30px !important;
+    color: $primar-text-color;
 }
 
 ::v-deep .button.is-medium {
     border-width: 2px;
+    background: $button-bg;
+    border: none;
 }
 
 ::v-deep .navbar-item img {

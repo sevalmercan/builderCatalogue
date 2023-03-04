@@ -1,11 +1,13 @@
 <template>
-    <div>
-        <nav-bar />
-        <div class="content">
-            <router-view />
-        </div>
-        <div class="main-footer">
-            <img src="../assets/images/footer.png" alt="Lego Header">
+    <div class="layout">
+        <div class="main-page">
+            <nav-bar />
+            <div class="content">
+                <router-view />
+            </div>
+            <div class="main-footer">
+                <img src="../assets/images/footer.png" alt="Lego Header">
+            </div>
         </div>
     </div>
 </template>
@@ -29,14 +31,29 @@ export default {
 </script>
   
 <style lang="scss" scoped >
-.content {
-    padding: 30px;
-}
+@import '../assets/style/color.scss';
 
-.main-footer {
-    position: fixed;
-    bottom: -6px;
-    width: 100%;
+.layout {
+    overflow: hidden;
+    background: $layout-bg;
+
+
+    .main-page {
+        margin: 50px;
+        overflow: hidden;
+        background: $main-page-bg;
+        border-radius: 50px;
+
+        .content {
+            padding: 30px;
+        }
+
+        .main-footer {
+            position: fixed;
+            bottom: -6px;
+            width: 100%;
+        }
+    }
 }
 </style>
   
