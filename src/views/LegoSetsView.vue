@@ -54,19 +54,23 @@ export default {
 .lego-set {
   display: flex;
   justify-content: space-between;
-  height: max-content;
+  height: 100vh;
 
   .lego-card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 50%;
-    height: max-content;
+    height: 100%;
+    overflow: scroll;
+
   }
 
   .lego-set-details-container {
     width: 47%;
     border: $button-bg solid;
+    height: 100%;
+    overflow: scroll;
 
   }
 }

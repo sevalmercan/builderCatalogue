@@ -84,7 +84,6 @@ export default {
     margin: 3px 17px;
     overflow: hidden;
     color: $primar-text-color;
-    color: $primar-text-color;
     display: flex;
     flex-direction: column;
     border-bottom: $button-bg solid;
