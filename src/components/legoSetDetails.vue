@@ -19,7 +19,7 @@
                                 {{ pieceStatistic.count }}
                             </div>
                             <div>
-                                {{ pieceStatistic.differance }}
+                                {{ pieceStatistic.difference }}
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,8 @@ export default {
                 }
             }
             if (matchedColor) {
-                return matchedColor.count - count
+                const result = matchedColor.count - count
+                return result === 0 ? 'You have all necessary pieces' : result
             }
             return "You have none"
 
@@ -72,6 +73,7 @@ export default {
         }
     },
     created() {
+        console.log(this.singleSetDetails)
         for (let singleSet of this.singleSetDetails) {
 
             const setId = singleSet.part.designID
@@ -81,7 +83,7 @@ export default {
                     designID: singleSet.part.designID,
                     variants: [{
                         color: singleSet.part.material, count: singleSet.quantity,
-                        differance: this.calculateWithUsersInventory({
+                        difference: this.calculateWithUsersInventory({
                             designID: singleSet.part.designID,
                             color: singleSet.part.material,
                             count: singleSet.quantity,
@@ -94,7 +96,7 @@ export default {
                     ...matchedSet, variants: matchedSet.variants.push({
                         color: singleSet.part.material,
                         count: singleSet.quantity,
-                        differance: this.calculateWithUsersInventory({
+                        difference: this.calculateWithUsersInventory({
                             designID: singleSet.part.designID,
                             color: singleSet.part.material,
                             count: singleSet.quantity,

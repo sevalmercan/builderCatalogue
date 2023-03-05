@@ -2,11 +2,14 @@
   <div class="lego-set">
     <div class="lego-card-container">
       <div v-for="singleSet in sets" :key="singleSet.id">
-        <lego-set-card :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces" />
+        <div @click="changeSetId(singleSet.id)">
+          <lego-set-card :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces" />
+        </div>
+
       </div>
     </div>
     <div class="lego-set-details-container">
-      <lego-set-details v-if="isFetchDone" :singleSetDetails="this.setDetails.pieces" />
+      <lego-set-details v-if="isFetchDone" :singleSetDetails="setDetails.pieces" />
     </div>
 
   </div>
@@ -30,6 +33,17 @@ export default {
       singleSetId: "",
       isFetchDone: false
     }
+  },
+  methods: {
+    async changeSetId(setId) {
+      this.isFetchDone = false
+      await axios
+        .get(`https://d16m5wbro86fg2.cloudfront.net/api/set/by-id/${setId}`)
+        .then(response => (legoStore.setDetails = response.data));
+      this.isFetchDone = true
+
+    }
+
   },
   async mounted() {
     await axios
