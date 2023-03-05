@@ -51,13 +51,6 @@ export default {
             }, 0);
 
         },
-
-        isSetAvailableForUser(sets) {
-            return !sets.some(set => {
-                return set.variants.some(variant => variant.difference < 0
-                    || variant.difference === 'You have none')
-            });
-        }
     },
 }
 </script>

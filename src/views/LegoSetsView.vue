@@ -96,6 +96,12 @@ export default {
       }
       return setInfo
     },
+    isSetAvailableForUser(sets) {
+      return !sets.some(set => {
+        return set.variants.some(variant => variant.difference < 0
+          || variant.difference === 'You have none')
+      });
+    },
     async handleIsSetsAvailable() {
       for (let set of legoStore.sets) {
         let setDetails = []
@@ -103,7 +109,9 @@ export default {
         await axios
           .get(`https://d16m5wbro86fg2.cloudfront.net/api/set/by-id/${setId}`)
           .then(response => (setDetails = response.data));
-        set['setDetails'] = this.getAllColorVariants(setDetails.pieces)
+        setDetails = this.getAllColorVariants(setDetails.pieces)
+        set['setDetails'] = setDetails
+        set['isAvailable'] = this.isSetAvailableForUser(setDetails)
       }
 
 
