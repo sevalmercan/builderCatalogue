@@ -19,11 +19,7 @@
                                 {{ pieceStatistic.count }}
                             </div>
                             <div>
-                                {{ calculateWithUsersInventory({
-                                    designID: set.designID,
-                                    color: pieceStatistic.color,
-                                    count: pieceStatistic.count
-                                }) }}
+                                {{ pieceStatistic.differance }}
                             </div>
                         </div>
                     </div>
@@ -83,16 +79,31 @@ export default {
             if (!matchedSet) {
                 this.setInfo.push({
                     designID: singleSet.part.designID,
-                    variants: [{ color: singleSet.part.material, count: singleSet.quantity }]
+                    variants: [{
+                        color: singleSet.part.material, count: singleSet.quantity,
+                        differance: this.calculateWithUsersInventory({
+                            designID: singleSet.part.designID,
+                            color: singleSet.part.material,
+                            count: singleSet.quantity,
+                        })
+                    }]
                 })
             }
             else {
-                matchedSet = { ...matchedSet, variants: matchedSet.variants.push({ color: singleSet.part.material, count: singleSet.quantity }) }
+                matchedSet = {
+                    ...matchedSet, variants: matchedSet.variants.push({
+                        color: singleSet.part.material,
+                        count: singleSet.quantity,
+                        differance: this.calculateWithUsersInventory({
+                            designID: singleSet.part.designID,
+                            color: singleSet.part.material,
+                            count: singleSet.quantity,
+                        })
+                    })
+                }
 
             }
         }
-        console.log(this.setInfo)
-        console.log(this.userInventory.collection)
     }
 }
 </script>
