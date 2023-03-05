@@ -50,25 +50,22 @@ export default {
             return colours.find(color => color.code === currentColorCode).rgb
         },
         calculateTotalBrick(variants) {
-            let totalBrick = 0
-            variants.forEach(color => {
-                totalBrick += color.count
-            });
-            return totalBrick
+            return variants.reduce((acc, color) => {
+                acc += color.count
+                return acc
+            }, 0);
+
         },
         calculateWithUsersInventory({ designID, color, count }) {
-            let matchedColor;
-            for (let piece of this.userInventory.collection) {
-                if (piece.pieceId === designID) {
-                    matchedColor = piece.variants.find(variant => variant.color === color.toString())
-                }
-            }
-            if (matchedColor) {
-                const result = matchedColor.count - count
-                return result === 0 ? 'You have all necessary pieces' : result
-            }
-            return "You have none"
-        }
+            const matchDesignId = this.userInventory.collection.find(piece => piece.pieceId === designID)
+            const matchedColor = matchDesignId.variants.find(variant =>
+                variant.color === color.toString())
+
+            if (!matchedColor) return "You have none";
+
+            const result = matchedColor.count - count
+            return result === 0 ? 'You have all necessary pieces' : result
+        },
     },
     created() {
         for (const singleSet of this.singleSetDetails) {
