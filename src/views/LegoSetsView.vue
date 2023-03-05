@@ -1,10 +1,7 @@
 <template>
   <div class="lego-set">
     <div class="lego-card-container">
-      <lego-set-card />
-      <lego-set-card />
-      <lego-set-card />
-      <lego-set-card />
+      <lego-set-card :name="setDetails.name" :setNumber="setDetails.setNumber" :totalPieces="setDetails.totalPieces" />
     </div>
     <div class="lego-set-details-container">
 
@@ -20,7 +17,9 @@ import legoSetCard from '@/components/legoSetCard.vue';
 import legoSetDetails from '@/components/legoSetDetails.vue';
 import axios from 'axios'
 import { legoStore } from "../common/store"
+import legoMixin from '@/common/legoMixin.vue';
 export default {
+  mixins: [legoMixin],
   components: {
     legoSetCard,
     legoSetDetails

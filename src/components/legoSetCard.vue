@@ -6,13 +6,13 @@
 
             <div class="info">
                 <div>
-                    Name : alien-spaceship
+                    Name : {{ name }}
                 </div>
                 <div>
-                    Set Number : 497XX
+                    Set Number : {{ setNumber }}
                 </div>
                 <div>
-                    Total Pieces: 1050
+                    Total Pieces: {{ totalPieces }}
                 </div>
             </div>
 
@@ -22,6 +22,17 @@
     </div>
 </template>
   
+<script>
+
+export default {
+    props: {
+        name: String,
+        setNumber: String,
+        totalPieces: Number
+    }
+}
+</script>
+
 <style lang="scss" scoped>
 @import '../assets/style/color.scss';
 

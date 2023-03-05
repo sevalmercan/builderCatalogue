@@ -7,7 +7,11 @@ export default {
     computed: {
         userInventory() {
             return legoStore.userInventory;
+        },
+        setDetails() {
+            return legoStore.setDetails
         }
+
     },
 };
 </script>
