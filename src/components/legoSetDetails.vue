@@ -68,43 +68,34 @@ export default {
                 return result === 0 ? 'You have all necessary pieces' : result
             }
             return "You have none"
-
-
         }
     },
     created() {
-        console.log(this.singleSetDetails)
-        for (let singleSet of this.singleSetDetails) {
-
+        for (const singleSet of this.singleSetDetails) {
             const setId = singleSet.part.designID
-            let matchedSet = this.setInfo.find(set => set.designID === setId)
+            const matchedSet = this.setInfo.find(set => set.designID === setId)
+
+            const difference = this.calculateWithUsersInventory({
+                designID: singleSet.part.designID,
+                color: singleSet.part.material,
+                count: singleSet.quantity,
+            });
+
+            const variantInfo = {
+                difference,
+                color: singleSet.part.material,
+                count: singleSet.quantity,
+
+            }
             if (!matchedSet) {
                 this.setInfo.push({
                     designID: singleSet.part.designID,
-                    variants: [{
-                        color: singleSet.part.material, count: singleSet.quantity,
-                        difference: this.calculateWithUsersInventory({
-                            designID: singleSet.part.designID,
-                            color: singleSet.part.material,
-                            count: singleSet.quantity,
-                        })
-                    }]
+                    variants: [variantInfo]
                 })
+                continue;
             }
-            else {
-                matchedSet = {
-                    ...matchedSet, variants: matchedSet.variants.push({
-                        color: singleSet.part.material,
-                        count: singleSet.quantity,
-                        difference: this.calculateWithUsersInventory({
-                            designID: singleSet.part.designID,
-                            color: singleSet.part.material,
-                            count: singleSet.quantity,
-                        })
-                    })
-                }
+            matchedSet.variants.push(variantInfo)
 
-            }
         }
     }
 }

@@ -1,21 +1,26 @@
 <template>
   <div class="lego-set">
-    <div class="lego-card-container">
-      <div v-for="singleSet in sets" :key="singleSet.id">
-        <div @click="changeSetId(singleSet.id)">
-          <lego-set-card :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces" />
-        </div>
+    <b-switch v-model="isSwitched">Default</b-switch>
+    <div class="content">
+      <div class="lego-card-container">
+        <div v-for="singleSet in sets" :key="singleSet.id">
+          <div @click="changeSetId(singleSet.id)">
+            <lego-set-card :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces" />
+          </div>
 
+        </div>
+      </div>
+      <div class="lego-set-details-container">
+        <div class="set-title">
+          {{ setDetails.name }}
+        </div>
+        <div class="set-details-wrapper">
+          <lego-set-details v-if="isFetchDone" :singleSetDetails="setDetails.pieces" />
+        </div>
       </div>
     </div>
-    <div class="lego-set-details-container">
-      <div class="set-title">
-        {{ setDetails.name }}
-      </div>
-      <div class="set-details-wrapper">
-        <lego-set-details v-if="isFetchDone" :singleSetDetails="setDetails.pieces" />
-      </div>
-    </div>
+
+
 
   </div>
 </template>
@@ -36,7 +41,8 @@ export default {
   data() {
     return {
       singleSetId: "",
-      isFetchDone: false
+      isFetchDone: false,
+      isSwitched: false
     }
   },
   methods: {
@@ -72,38 +78,52 @@ export default {
 
 .lego-set {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   height: 100vh;
 
-  .lego-card-container {
+  ::v-deep .switch {
+
+    margin-bottom: 15px;
+  }
+
+  .content {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 50%;
-    height: 100%;
-    overflow: scroll;
-
-  }
-
-  .lego-set-details-container {
-    width: 47%;
     height: 100%;
 
-    .set-title {
+    .lego-card-container {
       display: flex;
-      justify-content: center;
-      color: $primar-text-color;
-      font-size: 29px;
-      margin-bottom: 16px;
-      line-height: 33px;
-    }
-
-    .set-details-wrapper {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 50%;
       height: 100%;
-      border: $button-bg solid;
       overflow: scroll;
+
+
     }
 
+    .lego-set-details-container {
+      width: 47%;
+      height: 100%;
+
+      .set-title {
+        display: flex;
+        justify-content: center;
+        color: $primar-text-color;
+        font-size: 29px;
+        margin-bottom: 16px;
+        line-height: 33px;
+      }
+
+      .set-details-wrapper {
+        height: 100%;
+        border: $button-bg solid;
+        overflow: scroll;
+      }
+
+    }
   }
+
+
 }
 </style>
