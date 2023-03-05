@@ -47,11 +47,9 @@ export default {
     }
   },
   methods: {
-    async changeSetId(setId) {
+    changeSetId(setId) {
       this.isFetchDone = false
-      await axios
-        .get(`https://d16m5wbro86fg2.cloudfront.net/api/set/by-id/${setId}`)
-        .then(response => (legoStore.setDetails = response.data));
+      legoStore.setDetails = this.sets.find(set => set.id === setId).setDetails
       this.isFetchDone = true
 
     },
@@ -103,7 +101,7 @@ export default {
       });
     },
     async handleIsSetsAvailable() {
-      for (let set of legoStore.sets) {
+      for (let set of this.sets) {
         let setDetails = []
         const setId = set.id
         await axios
@@ -113,8 +111,6 @@ export default {
         set['setDetails'] = setDetails
         set['isAvailable'] = this.isSetAvailableForUser(setDetails)
       }
-
-
     }
   },
   async mounted() {
@@ -122,11 +118,9 @@ export default {
       .get('https://d16m5wbro86fg2.cloudfront.net/api/sets')
       .then(response => (legoStore.sets = response.data.Sets));
 
-    this.singleSetId = this.sets[0].id
     await this.handleIsSetsAvailable()
     legoStore.setDetails = this.sets[0].setDetails
-    console.log(this.sets)
-    console.log(legoStore.setDetails)
+
     this.isFetchDone = true
 
   },
