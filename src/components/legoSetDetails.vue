@@ -1,6 +1,6 @@
 <template>
     <div class="set-details">
-        <div v-for="set in setInfo" :key="set.designID">
+        <div v-for="set in singleSetDetails" :key="set.designID">
             <div class="single-set">
                 <div class="total-info">
                     <div>
@@ -38,12 +38,7 @@ import { colours } from '@/common/colours';
 export default {
     mixins: [legoMixin],
     props: {
-        singleSetDetails: Array
-    },
-    data() {
-        return {
-            setInfo: []
-        }
+        singleSetDetails: Array,
     },
     methods: {
         getColor(currentColorCode) {
@@ -56,45 +51,14 @@ export default {
             }, 0);
 
         },
-        calculateWithUsersInventory({ designID, color, count }) {
-            const matchDesignId = this.userInventory.collection.find(piece => piece.pieceId === designID)
-            const matchedColor = matchDesignId.variants.find(variant =>
-                variant.color === color.toString())
 
-            if (!matchedColor) return "You have none";
-
-            const result = matchedColor.count - count
-            return result === 0 ? 'You have all necessary pieces' : result
-        },
-    },
-    created() {
-        for (const singleSet of this.singleSetDetails) {
-            const setId = singleSet.part.designID
-            const matchedSet = this.setInfo.find(set => set.designID === setId)
-
-            const difference = this.calculateWithUsersInventory({
-                designID: singleSet.part.designID,
-                color: singleSet.part.material,
-                count: singleSet.quantity,
+        isSetAvailableForUser(sets) {
+            return !sets.some(set => {
+                return set.variants.some(variant => variant.difference < 0
+                    || variant.difference === 'You have none')
             });
-
-            const variantInfo = {
-                difference,
-                color: singleSet.part.material,
-                count: singleSet.quantity,
-
-            }
-            if (!matchedSet) {
-                this.setInfo.push({
-                    designID: singleSet.part.designID,
-                    variants: [variantInfo]
-                })
-                continue;
-            }
-            matchedSet.variants.push(variantInfo)
-
         }
-    }
+    },
 }
 </script>
 

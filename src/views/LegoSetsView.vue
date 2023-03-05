@@ -15,7 +15,7 @@
           {{ setDetails.name }}
         </div>
         <div class="set-details-wrapper">
-          <lego-set-details v-if="isFetchDone" :singleSetDetails="setDetails.pieces" />
+          <lego-set-details v-if="isFetchDone" :singleSetDetails="setDetails" />
         </div>
       </div>
     </div>
@@ -42,7 +42,8 @@ export default {
     return {
       singleSetId: "",
       isFetchDone: false,
-      isSwitched: false
+      isSwitched: false,
+
     }
   },
   methods: {
@@ -53,8 +54,60 @@ export default {
         .then(response => (legoStore.setDetails = response.data));
       this.isFetchDone = true
 
-    }
+    },
+    calculateWithUsersInventory({ designID, color, count }) {
+      const matchDesignId = this.userInventory.collection.find(piece => piece.pieceId === designID)
+      const matchedColor = matchDesignId.variants.find(variant =>
+        variant.color === color.toString())
 
+      if (!matchedColor) return "You have none";
+
+      const result = matchedColor.count - count
+      return result === 0 ? 'You have all necessary pieces' : result
+    },
+    getAllColorVariants(setDetails) {
+      let setInfo = []
+      //this.setDetails.pieces
+      for (const singleSet of setDetails) {
+        const setId = singleSet.part.designID
+        const matchedSet = setInfo.find(set => set.designID === setId)
+
+        const difference = this.calculateWithUsersInventory({
+          designID: singleSet.part.designID,
+          color: singleSet.part.material,
+          count: singleSet.quantity,
+        });
+
+        const variantInfo = {
+          difference,
+          color: singleSet.part.material,
+          count: singleSet.quantity,
+
+        }
+        if (!matchedSet) {
+          setInfo.push({
+            designID: singleSet.part.designID,
+            variants: [variantInfo]
+          })
+          continue;
+        }
+        matchedSet.variants.push(variantInfo)
+
+      }
+      return setInfo
+    },
+    async handleIsSetsAvailable() {
+      for (let set of legoStore.sets) {
+        let setDetails = []
+        const setId = set.id
+        await axios
+          .get(`https://d16m5wbro86fg2.cloudfront.net/api/set/by-id/${setId}`)
+          .then(response => (setDetails = response.data));
+        set['setDetails'] = this.getAllColorVariants(setDetails.pieces)
+      }
+
+
+    }
   },
   async mounted() {
     await axios
@@ -62,14 +115,13 @@ export default {
       .then(response => (legoStore.sets = response.data.Sets));
 
     this.singleSetId = this.sets[0].id
-
-
-    await axios
-      .get(`https://d16m5wbro86fg2.cloudfront.net/api/set/by-id/${this.singleSetId}`)
-      .then(response => (legoStore.setDetails = response.data));
-
+    await this.handleIsSetsAvailable()
+    legoStore.setDetails = this.sets[0].setDetails
+    console.log(this.sets)
+    console.log(legoStore.setDetails)
     this.isFetchDone = true
-  }
+
+  },
 }
 </script>
 
