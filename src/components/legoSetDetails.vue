@@ -8,7 +8,7 @@
                     </div>
 
                     <div>
-                        Total Brick : 17
+                        Total Brick : {{ calculateTotalBrick(set.variants) }}
                     </div>
                 </div>
 
@@ -54,6 +54,13 @@ export default {
     methods: {
         getColor(currentColorCode) {
             return colours.find(color => color.code === currentColorCode).rgb
+        },
+        calculateTotalBrick(variants) {
+            let totalBrick = 0
+            variants.forEach(color => {
+                totalBrick += color.count
+            });
+            return totalBrick
         }
     },
     created() {
