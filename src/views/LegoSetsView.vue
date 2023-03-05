@@ -9,7 +9,12 @@
       </div>
     </div>
     <div class="lego-set-details-container">
-      <lego-set-details v-if="isFetchDone" :singleSetDetails="setDetails.pieces" />
+      <div class="set-title">
+        {{ setDetails.name }}
+      </div>
+      <div class="set-details-wrapper">
+        <lego-set-details v-if="isFetchDone" :singleSetDetails="setDetails.pieces" />
+      </div>
     </div>
 
   </div>
@@ -82,9 +87,22 @@ export default {
 
   .lego-set-details-container {
     width: 47%;
-    border: $button-bg solid;
     height: 100%;
-    overflow: scroll;
+
+    .set-title {
+      display: flex;
+      justify-content: center;
+      color: $primar-text-color;
+      font-size: 29px;
+      margin-bottom: 16px;
+      line-height: 33px;
+    }
+
+    .set-details-wrapper {
+      height: 100%;
+      border: $button-bg solid;
+      overflow: scroll;
+    }
 
   }
 }
