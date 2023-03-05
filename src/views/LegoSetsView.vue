@@ -6,8 +6,7 @@
       </div>
     </div>
     <div class="lego-set-details-container">
-
-      <lego-set-details />
+      <lego-set-details v-if="isFetchDone" :singleSetDetails="this.setDetails.pieces" />
     </div>
 
   </div>
@@ -26,15 +25,25 @@ export default {
     legoSetCard,
     legoSetDetails
   },
-  mounted() {
-    axios
-      .get('https://d16m5wbro86fg2.cloudfront.net/api/set/by-id/040f11ab-e301-4724-bacd-50841816e06b')
-      .then(response => (legoStore.setDetails = response.data));
-
-    axios
+  data() {
+    return {
+      singleSetId: "",
+      isFetchDone: false
+    }
+  },
+  async mounted() {
+    await axios
       .get('https://d16m5wbro86fg2.cloudfront.net/api/sets')
       .then(response => (legoStore.sets = response.data.Sets));
 
+    this.singleSetId = this.sets[0].id
+
+
+    await axios
+      .get(`https://d16m5wbro86fg2.cloudfront.net/api/set/by-id/${this.singleSetId}`)
+      .then(response => (legoStore.setDetails = response.data));
+
+    this.isFetchDone = true
   }
 }
 </script>

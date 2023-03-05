@@ -37,7 +37,20 @@
 <script>
 import legoMixin from '@/common/legoMixin.vue';
 export default {
-    mixins: [legoMixin]
+    mixins: [legoMixin],
+    props: {
+        singleSetDetails: Array
+    },
+    data() {
+        return {
+            setInfo: []
+        }
+    },
+    created() {
+        console.log(this.singleSetDetails)
+        console.log("deneme")
+
+    }
 }
 </script>
 
