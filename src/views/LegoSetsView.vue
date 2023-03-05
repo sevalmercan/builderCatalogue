@@ -7,21 +7,17 @@
           <div @click="changeSetId(singleSet.id)">
             <lego-set-card :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces" />
           </div>
-
         </div>
       </div>
       <div class="lego-set-details-container">
         <div class="set-title">
-          {{ setDetails.name }}
+          {{ selectedSetName }}
         </div>
         <div class="set-details-wrapper">
           <lego-set-details v-if="isFetchDone" :singleSetDetails="setDetails" />
         </div>
       </div>
     </div>
-
-
-
   </div>
 </template>
 
@@ -43,13 +39,25 @@ export default {
       singleSetId: "",
       isFetchDone: false,
       isSwitched: false,
-
+      selectedSetName: String
+    }
+  },
+  watch: {
+    // whenever question changes, this function will run
+    isSwitched(switchStatus) {
+      if (switchStatus) {
+        legoStore.sets = this.getAvaliableSets(this.sets)
+        legoStore.setDetails = this.sets[0].setDetails
+        this.selectedSetName = this.sets[0].name
+      }
     }
   },
   methods: {
     changeSetId(setId) {
       this.isFetchDone = false
-      legoStore.setDetails = this.sets.find(set => set.id === setId).setDetails
+      const matchedSet = this.sets.find(set => set.id === setId)
+      legoStore.setDetails = matchedSet.setDetails
+      this.selectedSetName = matchedSet.name
       this.isFetchDone = true
 
     },
@@ -111,6 +119,9 @@ export default {
         set['setDetails'] = setDetails
         set['isAvailable'] = this.isSetAvailableForUser(setDetails)
       }
+    },
+    getAvaliableSets() {
+      return this.sets.filter(set => set.isAvailable)
     }
   },
   async mounted() {
@@ -120,6 +131,7 @@ export default {
 
     await this.handleIsSetsAvailable()
     legoStore.setDetails = this.sets[0].setDetails
+    this.selectedSetName = this.sets[0].name
 
     this.isFetchDone = true
 
