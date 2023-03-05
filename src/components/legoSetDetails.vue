@@ -11,23 +11,21 @@
                         Total Brick : {{ calculateTotalBrick(set.variants) }}
                     </div>
                 </div>
-
-                <div v-for="pieceStatistic in set.variants" :key="pieceStatistic.color
-                ">
-
-
+                <div v-for="pieceStatistic in set.variants" :key="pieceStatistic.color">
                     <div class="piece-statistics">
 
                         <div class="piece-result">
                             <div class="circle" :style="{ 'background': getColor(pieceStatistic.color) }">
-                                {{ pieceStatistic.color }}
+                                {{ pieceStatistic.count }}
                             </div>
                             <div>
-                                +5 available
+                                {{ calculateWithUsersInventory({
+                                    designID: set.designID,
+                                    color: pieceStatistic.color,
+                                    count: pieceStatistic.count
+                                }) }}
                             </div>
                         </div>
-
-
                     </div>
                 </div>
 
@@ -61,6 +59,20 @@ export default {
                 totalBrick += color.count
             });
             return totalBrick
+        },
+        calculateWithUsersInventory({ designID, color, count }) {
+            let matchedColor;
+            for (let piece of this.userInventory.collection) {
+                if (piece.pieceId === designID) {
+                    matchedColor = piece.variants.find(variant => variant.color === color.toString())
+                }
+            }
+            if (matchedColor) {
+                return matchedColor.count - count
+            }
+            return "You have none"
+
+
         }
     },
     created() {
@@ -80,6 +92,7 @@ export default {
             }
         }
         console.log(this.setInfo)
+        console.log(this.userInventory.collection)
     }
 }
 </script>
