@@ -39,17 +39,16 @@ export default {
       singleSetId: "",
       isFetchDone: false,
       isSwitched: false,
-      selectedSetName: String
+      selectedSetName: String,
+      allSets: []
     }
   },
   watch: {
     // whenever question changes, this function will run
     isSwitched(switchStatus) {
-      if (switchStatus) {
-        legoStore.sets = this.getAvaliableSets(this.sets)
-        legoStore.setDetails = this.sets[0].setDetails
-        this.selectedSetName = this.sets[0].name
-      }
+      legoStore.sets = switchStatus ? this.getAvaliableSets(this.sets) : this.allSets;
+      legoStore.setDetails = this.sets[0].setDetails
+      this.selectedSetName = this.sets[0].name
     }
   },
   methods: {
@@ -131,6 +130,7 @@ export default {
 
     await this.handleIsSetsAvailable()
     legoStore.setDetails = this.sets[0].setDetails
+    this.allSets = this.sets
     this.selectedSetName = this.sets[0].name
 
     this.isFetchDone = true
