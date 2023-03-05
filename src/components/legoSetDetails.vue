@@ -12,19 +12,25 @@
                     </div>
                 </div>
 
-                <div class="piece-statistics">
+                <div v-for="pieceStatistic in set.variants" :key="pieceStatistic.color
+                ">
 
-                    <div class="piece-result">
-                        <div class="circle">
-                            9
+
+                    <div class="piece-statistics">
+
+                        <div class="piece-result">
+                            <div class="circle" :style="{ 'background': getColor(pieceStatistic.color) }">
+                                {{ pieceStatistic.color }}
+                            </div>
+                            <div>
+                                +5 available
+                            </div>
                         </div>
-                        <div>
-                            +5 available
-                        </div>
+
+
                     </div>
-
-
                 </div>
+
             </div>
         </div>
 
@@ -34,6 +40,7 @@
 
 <script>
 import legoMixin from '@/common/legoMixin.vue';
+import { colours } from '@/common/colours';
 export default {
     mixins: [legoMixin],
     props: {
@@ -42,6 +49,11 @@ export default {
     data() {
         return {
             setInfo: []
+        }
+    },
+    methods: {
+        getColor(currentColorCode) {
+            return colours.find(color => color.code === currentColorCode).rgb
         }
     },
     created() {
@@ -107,7 +119,6 @@ export default {
                     justify-content: center;
                     align-items: center;
                     margin-right: 15px;
-                    background: red;
 
                 }
             }

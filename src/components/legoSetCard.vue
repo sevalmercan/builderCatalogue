@@ -56,6 +56,7 @@ export default {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        min-width: 430px;
 
         img {
             width: auto;

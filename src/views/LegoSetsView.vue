@@ -61,6 +61,7 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     width: 50%;
+    height: max-content;
   }
 
   .lego-set-details-container {
