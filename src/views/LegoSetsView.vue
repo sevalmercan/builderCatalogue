@@ -1,7 +1,9 @@
 <template>
   <div class="lego-set">
     <div class="lego-card-container">
-      <lego-set-card :name="setDetails.name" :setNumber="setDetails.setNumber" :totalPieces="setDetails.totalPieces" />
+      <div v-for="singleSet in sets" :key="singleSet.id">
+        <lego-set-card :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces" />
+      </div>
     </div>
     <div class="lego-set-details-container">
 
@@ -27,7 +29,12 @@ export default {
   mounted() {
     axios
       .get('https://d16m5wbro86fg2.cloudfront.net/api/set/by-id/040f11ab-e301-4724-bacd-50841816e06b')
-      .then(response => (legoStore.setDetails = response.data))
+      .then(response => (legoStore.setDetails = response.data));
+
+    axios
+      .get('https://d16m5wbro86fg2.cloudfront.net/api/sets')
+      .then(response => (legoStore.sets = response.data.Sets));
+
   }
 }
 </script>

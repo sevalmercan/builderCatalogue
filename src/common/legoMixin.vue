@@ -10,6 +10,9 @@ export default {
         },
         setDetails() {
             return legoStore.setDetails
+        },
+        sets() {
+            return legoStore.sets
         }
 
     },
