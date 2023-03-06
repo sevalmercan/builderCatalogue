@@ -55,6 +55,9 @@ export default {
         allUsers() {
             return legoStore.allUsers
         }
+        , otherUsersInventory() {
+            return legoStore.otherUsersInventory
+        }
 
     },
 };

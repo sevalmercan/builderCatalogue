@@ -33,12 +33,21 @@
 </template>
 
 <script>
+const NON_AVAILABLE = "You have none";
 import legoMixin from '@/common/legoMixin.vue';
+import { legoStore } from '@/common/store';
 import { colours } from '@/common/colours';
+import axios from 'axios'
+
 export default {
     mixins: [legoMixin],
     props: {
         singleSetDetails: Array,
+    },
+    async created() {
+        await this.getAllUsersInventory()
+        this.compareInventoryWithOtherUsers()
+        console.log(this.singleSetDetails)
     },
     methods: {
         getColor(currentColorCode) {
@@ -51,6 +60,55 @@ export default {
             }, 0);
 
         },
+        async getAllUsersInventory() {
+            for (const user of this.allUsers) {
+                await axios
+                    .get(`https://d16m5wbro86fg2.cloudfront.net/api/user/by-id/${user.id}`)
+                    .then(response => (legoStore.otherUsersInventory.push(response.data)))
+
+            }
+        },
+        compareInventoryWithOtherUsers() {
+            this.singleSetDetails.forEach(singlePiece => {
+                const designId = singlePiece.designID
+                let missingColorVariants = singlePiece.variants.filter(variant =>
+                    variant.difference < 0
+                    || variant.difference === NON_AVAILABLE
+                )
+                if (missingColorVariants) {
+                    this.otherUsersInventory.forEach(user => {
+                        missingColorVariants.forEach(missingVariant => {
+
+                            const matchedPiece = user.collection.find(otherUserCollectionPiece =>
+                                otherUserCollectionPiece.pieceId === designId)
+
+                            if (matchedPiece) {
+                                let foundPiece;
+                                const otherUserMatchedPiece =
+                                    matchedPiece.variants.find(variant => variant.color === missingVariant.color.toString())
+                                const isOtherUserHasNone = (missingVariant.difference === NON_AVAILABLE && otherUserMatchedPiece?.count >= missingVariant.count)
+                                const isOtherUserHasEnough =
+                                    (otherUserMatchedPiece?.count >= Math.abs(missingVariant.difference))
+
+                                if (isOtherUserHasNone || isOtherUserHasEnough) {
+                                    foundPiece = otherUserMatchedPiece.count
+                                    missingVariant = {
+                                        otherUsers:
+                                            { user: user.username, count: foundPiece }
+                                    }
+                                }
+                            }
+                        })
+                    })
+                }
+
+                console.log(singlePiece)
+
+
+            });
+
+
+        }
     },
 }
 </script>
