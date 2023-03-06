@@ -88,11 +88,17 @@ export default {
                                     (otherUserMatchedPiece?.count >= Math.abs(missingVariant.difference))
                                 if (isOtherUserHasNone || isOtherUserHasEnough) {
                                     foundPiece = otherUserMatchedPiece.count
-                                    variant = {
-                                        ...missingVariant,
-                                        otherUsers:
-                                            { user: user.username, count: foundPiece }
+                                    if (variant['otherUsers']) {
+                                        variant.otherUsers.push({ user: user.username, count: foundPiece })
                                     }
+                                    else {
+                                        variant = {
+                                            ...missingVariant,
+                                            otherUsers: [{ user: user.username, count: foundPiece }]
+
+                                        }
+                                    }
+
                                 }
                             }
 
