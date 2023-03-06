@@ -1,7 +1,8 @@
 <template>
     <div class="inventory">
         <div class="total-brick">
-            <h1 class="title">Total Brick : {{ userInventory.brickCount }} </h1>
+            <div class="title">Total Brick : {{ userInventory.brickCount }} </div>
+            <div class="title"> Total Pack :{{ userInventory.collection.length }} </div>
         </div>
         <div class="inventory-cards">
             <div v-for="piece in collection" :key="piece.pieceId">
@@ -39,10 +40,13 @@ export default {
 
     .total-brick {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
+        margin-bottom: 14px;
 
         .title {
             color: $primar-text-color !important;
+            font-size: 1rem;
+            margin: 0 10px;
         }
     }
 

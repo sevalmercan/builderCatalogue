@@ -44,7 +44,11 @@ export default {
     }
 }
 
-::v-deep .a.navbar-item:focus-within {
+::v-deep .navbar-item:focus-within {
+    background: transparent;
+}
+
+::v-deep .navbar-item:hover {
     background: transparent;
 }
 
@@ -56,7 +60,7 @@ export default {
     border-width: 2px;
     background: transparent;
     border: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
     padding: 1.2rem 1.8rem;
 }
