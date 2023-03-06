@@ -91,7 +91,7 @@ export default {
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
-                margin: 0 67px;
+                margin-left: 30px;
                 margin-bottom: 15px;
 
                 .circle {

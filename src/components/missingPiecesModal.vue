@@ -1,13 +1,14 @@
 <template>
     <div>
-        <button @click="isModalActive = !isModalActive">
-            {{ isModalActive }}
-        </button>
+
+        <b-button type="is-warning is-light" @click="isModalActive = !isModalActive">
+            Show Other Users</b-button>
+
         <b-modal v-model="isModalActive">
             <div class="card">
                 <div v-for="otherUser in otherUserInfo" :key="otherUser.user">
                     <div>
-                        {{ otherUser.user }}
+                        {{ getName(otherUser.user) }}
                         {{ otherUser.count }}
                     </div>
                 </div>
@@ -26,19 +27,29 @@ export default {
         return {
             isModalActive: false
         }
+    },
+    methods: {
+        getName(name) {
+            // regEx : split the string from '-' and '_' characthers
+            // and make uppercase first letter of each word 
+            return name.split(/[-_]+/).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
+        }
+
     }
-
 }
-
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/style/color.scss';
+
 ::v-deep .modal-background {
     background-color: transparent
 }
 
 ::v-deep .modal .modal-content {
-    width: 250px
+    width: 250px;
+    border: $button-bg solid;
+    color: $primar-text-color;
 }
 
 ::v-deep .modal.is-active {
