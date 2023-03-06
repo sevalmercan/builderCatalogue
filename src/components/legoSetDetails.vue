@@ -20,8 +20,9 @@
                             <div>
                                 {{ pieceStatistic.difference }}
                             </div>
+                            <missing-pieces-modal v-if="pieceStatistic.otherUsers"
+                                :otherUserInfo="pieceStatistic.otherUsers" />
                         </div>
-                        <missing-pieces-modal :otherUserInfo="pieceStatistic.otherUsers" />
                     </div>
                 </div>
 
@@ -38,6 +39,11 @@ export default {
     mixins: [legoMixin],
     components: {
         missingPiecesModal
+    },
+    data() {
+        return {
+            isCardModalActive: false
+        }
     },
     props: {
         singleSetDetails: Array,
@@ -79,6 +85,7 @@ export default {
         .piece-statistics {
             display: flex;
             flex-direction: column;
+            position: relative;
 
             .piece-result {
                 display: flex;
