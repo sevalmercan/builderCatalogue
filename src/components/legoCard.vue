@@ -17,10 +17,23 @@
 
             </div>
             <div class="color-palette">
+
                 <div v-for="colorPiece in variants" :key="colorPiece.color">
-                    <div class="circle" :style="{ 'background': getColor(colorPiece.color) }">
-                        {{ colorPiece.count }}
-                    </div>
+                    <b-tooltip position="is-bottom" type="is-dark" append-to-body multilined>
+                        <template v-slot:content>
+                            <section class="b-tooltips">
+                                <div>
+                                    <div> Color name: {{ getColorName(colorPiece.color) }}</div>
+                                    <div> Required quantity: {{ colorPiece.count }} </div>
+                                </div>
+                            </section>
+
+                        </template>
+                        <div class="circle" :style="{ 'background': getColor(colorPiece.color) }">
+                            {{ colorPiece.count }}
+                        </div>
+                    </b-tooltip>
+
                 </div>
 
             </div>
@@ -41,6 +54,9 @@ export default {
     methods: {
         getColor(currentColorCode) {
             return colours.find(color => color.code.toString() === currentColorCode).rgb
+        },
+        getColorName(currentColorCode) {
+            return colours.find(color => color.code.toString() === currentColorCode).name
         }
     }
 
