@@ -70,47 +70,39 @@ export default {
         },
         compareInventoryWithOtherUsers() {
             let deneme = this.singleSetDetails.map(singlePiece => {
-                const designId = singlePiece.designID
-                console.log("deneme")
                 singlePiece.variants = singlePiece.variants.map(variant => {
-                    if (variant.difference < 0
-                        || variant.difference === NON_AVAILABLE) {
-                        let missingVariant = variant
-                        this.otherUsersInventory.map(user => {
-                            const matchedPiece = user.collection.find(otherUserCollectionPiece =>
-                                otherUserCollectionPiece.pieceId === designId)
-                            if (matchedPiece) {
-                                let foundPiece;
-                                const otherUserMatchedPiece =
-                                    matchedPiece.variants.find(variant => variant.color === missingVariant.color.toString())
-                                const isOtherUserHasNone = (missingVariant.difference === NON_AVAILABLE && otherUserMatchedPiece?.count >= missingVariant.count)
-                                const isOtherUserHasEnough =
-                                    (otherUserMatchedPiece?.count >= Math.abs(missingVariant.difference))
-                                if (isOtherUserHasNone || isOtherUserHasEnough) {
-                                    foundPiece = otherUserMatchedPiece.count
-                                    if (variant['otherUsers']) {
-                                        variant.otherUsers.push({ user: user.username, count: foundPiece })
-                                    }
-                                    else {
-                                        variant = {
-                                            ...missingVariant,
-                                            otherUsers: [{ user: user.username, count: foundPiece }]
+                    const isVariantAvailable = variant.difference < 0 || variant.difference === NON_AVAILABLE
+                    if (!isVariantAvailable) return variant;
 
-                                        }
-                                    }
+                    let missingVariant = variant
+                    this.otherUsersInventory.map(user => {
+                        const matchedPiece = user.collection.find(otherUserCollectionPiece =>
+                            otherUserCollectionPiece.pieceId === singlePiece.designID)
+                        if (!matchedPiece) return
 
-                                }
-                            }
+                        const otherUserMatchedPiece =
+                            matchedPiece.variants.find(colorVariant => colorVariant.color === missingVariant.color.toString())
+                        const isOtherUserHasNone = (missingVariant.difference === NON_AVAILABLE && otherUserMatchedPiece?.count >= missingVariant.count)
+                        const isOtherUserHasEnough =
+                            (otherUserMatchedPiece?.count >= Math.abs(missingVariant.difference))
+                        if (!(isOtherUserHasNone || isOtherUserHasEnough)) return;
 
-                        })
-                    }
+                        let foundPiece = otherUserMatchedPiece.count
+                        if (variant['otherUsers']) {
+                            variant.otherUsers.push({ user: user.username, count: foundPiece })
+                            return;
+                        }
+                        variant = {
+                            ...missingVariant,
+                            otherUsers: [{ user: user.username, count: foundPiece }]
+                        }
+                    })
                     return variant
                 }
                 )
                 return singlePiece
             });
             console.log(deneme)
-
         }
     },
 }
