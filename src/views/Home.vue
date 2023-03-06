@@ -51,12 +51,12 @@ export default {
         .content {
             padding: 30px;
         }
+    }
 
-        .main-footer {
-            position: fixed;
-            bottom: -6px;
-            width: 100%;
-        }
+    .main-footer {
+        position: fixed;
+        bottom: -20px;
+        width: 100%;
     }
 }
 </style>

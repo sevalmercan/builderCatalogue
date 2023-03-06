@@ -2,7 +2,7 @@
     <b-navbar class="main-nav">
         <template #brand>
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                <img src="../assets/images/LegoLogo.png" alt="Lego Logo">
+                <img src="../assets/images/brick-logo.png" alt="Lego Logo">
             </b-navbar-item>
         </template>
         <template #start>
@@ -42,6 +42,7 @@ export default {
     background: $main-page-bg;
     padding: 0 30px !important;
     color: $primar-text-color;
+    margin-top: 15px;
 }
 
 ::v-deep .button.is-medium {
