@@ -8,22 +8,15 @@
         <template #start>
             <router-link to="/my-inventory">
                 <b-navbar-item>
-                    <b-button rounded outlined size="is-medium"> My Inventory</b-button>
+                    <b-button rounded outlined size="is-small">
+                        My Inventory</b-button>
                 </b-navbar-item>
             </router-link>
             <router-link to="/lego-sets"> <b-navbar-item>
-                    <b-button rounded outlined size="is-medium">
-                        Lego Sets
+                    <b-button rounded outlined size="is-small">
+                        Collections
                     </b-button>
                 </b-navbar-item></router-link>
-        </template>
-        <template #end>
-            <b-navbar-item tag="div">
-                <div class="buttons">
-                    <b-button rounded size="is-medium"> Log in</b-button>
-
-                </div>
-            </b-navbar-item>
         </template>
     </b-navbar>
 </template>
@@ -45,10 +38,13 @@ export default {
     margin-top: 15px;
 }
 
-::v-deep .button.is-medium {
+::v-deep .button.is-small {
     border-width: 2px;
     background: $button-bg;
     border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 1.2rem 1.8rem;
 }
 
 ::v-deep .navbar-item img {
@@ -62,9 +58,5 @@ export default {
 
 ::v-deep .navbar-end {
     margin-left: 0;
-}
-
-::v-deep .button.is-medium {
-    font-size: 1.12rem;
 }
 </style>

@@ -22,9 +22,6 @@ export default {
     components: {
         legoCard
     },
-    created() {
-        console.log(this.userInventory)
-    },
     computed: {
         collection() {
             return this.userInventory.collection;

@@ -5,9 +5,9 @@
             <div class="content">
                 <router-view />
             </div>
-            <div class="main-footer">
-                <img src="../assets/images/footer.png" alt="Lego Header">
-            </div>
+        </div>
+        <div class="main-footer">
+            <img src="../assets/images/footer.png" alt="Lego Header">
         </div>
     </div>
 </template>
@@ -43,7 +43,7 @@ export default {
 
 
     .main-page {
-        margin: 50px;
+        margin: 30px 50px;
         overflow: hidden;
         background: $main-page-bg;
         border-radius: 50px;
