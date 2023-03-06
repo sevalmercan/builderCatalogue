@@ -1,7 +1,21 @@
 <template>
     <div class="lego-card">
         <div class="card-info">
-            <div class="piece-id"> Piece Id : {{ pieceId }}</div>
+            <div class="piece-id">
+                <div class="piece-img">
+                    <img src="../assets/images/piece-icon.png" alt="Lego Logo">
+
+                </div>
+                <div class="piece-id-text">
+                    <div>
+                        {{ pieceId }}
+                    </div>
+                    <div class="text">
+                        Piece
+                    </div>
+                </div>
+
+            </div>
             <div class="color-palette">
                 <div v-for="colorPiece in variants" :key="colorPiece.color">
                     <div class="circle" :style="{ 'background': getColor(colorPiece.color) }">
@@ -50,9 +64,8 @@ export default {
     .card-info {
         font-family: 'Roboto', sans-serif;
         width: 100%;
-        border: solid;
-        padding: 15px;
-        border: $button-bg solid;
+        border: $border-bg solid;
+        padding: 1.5rem;
 
         .piece-id {
             margin: auto 0;
@@ -61,8 +74,38 @@ export default {
             -webkit-background-clip: text;
             -moz-background-clip: text;
             background-clip: text;
-            font-size: 20px;
-            border-bottom: $button-bg solid;
+            font-size: 0.95rem;
+
+            align-items: center;
+
+            .piece-id-text {
+                display: flex;
+                flex-direction: column;
+                line-height: 17px;
+
+                .text {
+                    font-size: 0.8rem;
+                    color: #535151;
+                }
+            }
+
+            .piece-img {
+                display: flex;
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                background: #d2d2e0de;
+                margin-right: 14px;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 22px;
+                    height: 22px;
+                }
+            }
+
+
         }
 
         .color-palette {
@@ -72,8 +115,8 @@ export default {
             flex-wrap: wrap;
 
             .circle {
-                width: 45px;
-                height: 45px;
+                width: 35px;
+                height: 35px;
                 -moz-border-radius: 50px;
                 -webkit-border-radius: 50px;
                 border-radius: 50px;
