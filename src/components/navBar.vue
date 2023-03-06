@@ -9,11 +9,13 @@
             <router-link to="/my-inventory">
                 <b-navbar-item>
                     <b-button rounded outlined size="is-small">
-                        My Inventory</b-button>
+                        <b-icon class="nav-icon" pack="fas" icon="fa-sharp fa-solid fa-briefcase" size="is-small">
+                        </b-icon> My Inventory</b-button>
                 </b-navbar-item>
             </router-link>
             <router-link to="/lego-sets"> <b-navbar-item>
                     <b-button rounded outlined size="is-small">
+                        <b-icon class="nav-icon" pack="fas" icon="fas fa-th-list" size="is-small" />
                         Collections
                     </b-button>
                 </b-navbar-item></router-link>
@@ -36,11 +38,23 @@ export default {
     padding: 0 30px !important;
     color: $primar-text-color;
     margin-top: 15px;
+
+    .nav-icon {
+        margin-right: 0.1rem !important;
+    }
+}
+
+::v-deep .a.navbar-item:focus-within {
+    background: transparent;
+}
+
+::v-deep .button.is-outlined:focus {
+    background-color: $button-bg ;
 }
 
 ::v-deep .button.is-small {
     border-width: 2px;
-    background: $button-bg;
+    background: transparent;
     border: none;
     font-size: 0.9rem;
     font-weight: 500;
