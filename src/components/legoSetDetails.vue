@@ -69,7 +69,7 @@ export default {
             }
         },
         compareInventoryWithOtherUsers() {
-            let deneme = this.singleSetDetails.map(singlePiece => {
+            this.singleSetDetails.forEach(singlePiece => {
                 singlePiece.variants = singlePiece.variants.map(variant => {
                     const isVariantAvailable = variant.difference < 0 || variant.difference === NON_AVAILABLE
                     if (!isVariantAvailable) return variant;
@@ -102,7 +102,6 @@ export default {
                 )
                 return singlePiece
             });
-            console.log(deneme)
         }
     },
 }
