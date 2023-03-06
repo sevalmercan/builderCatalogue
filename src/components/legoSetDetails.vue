@@ -69,19 +69,16 @@ export default {
             }
         },
         compareInventoryWithOtherUsers() {
-            this.singleSetDetails.forEach(singlePiece => {
+            let deneme = this.singleSetDetails.map(singlePiece => {
                 const designId = singlePiece.designID
-                let missingColorVariants = singlePiece.variants.filter(variant =>
-                    variant.difference < 0
-                    || variant.difference === NON_AVAILABLE
-                )
-                if (missingColorVariants) {
-                    this.otherUsersInventory.forEach(user => {
-                        missingColorVariants.forEach(missingVariant => {
-
+                console.log("deneme")
+                singlePiece.variants = singlePiece.variants.map(variant => {
+                    if (variant.difference < 0
+                        || variant.difference === NON_AVAILABLE) {
+                        let missingVariant = variant
+                        this.otherUsersInventory.map(user => {
                             const matchedPiece = user.collection.find(otherUserCollectionPiece =>
                                 otherUserCollectionPiece.pieceId === designId)
-
                             if (matchedPiece) {
                                 let foundPiece;
                                 const otherUserMatchedPiece =
@@ -89,24 +86,24 @@ export default {
                                 const isOtherUserHasNone = (missingVariant.difference === NON_AVAILABLE && otherUserMatchedPiece?.count >= missingVariant.count)
                                 const isOtherUserHasEnough =
                                     (otherUserMatchedPiece?.count >= Math.abs(missingVariant.difference))
-
                                 if (isOtherUserHasNone || isOtherUserHasEnough) {
                                     foundPiece = otherUserMatchedPiece.count
-                                    missingVariant = {
+                                    variant = {
+                                        ...missingVariant,
                                         otherUsers:
                                             { user: user.username, count: foundPiece }
                                     }
                                 }
                             }
+
                         })
-                    })
+                    }
+                    return variant
                 }
-
-                console.log(singlePiece)
-
-
+                )
+                return singlePiece
             });
-
+            console.log(deneme)
 
         }
     },
