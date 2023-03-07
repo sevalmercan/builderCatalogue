@@ -57,11 +57,6 @@ export default {
     },
 
   },
-  mounted() {
-    console.log(this.sets)
-    console.log(this.setDetails)
-
-  },
 }
 </script>
 

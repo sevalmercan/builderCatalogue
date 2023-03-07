@@ -40,9 +40,6 @@ export default {
         await this.getAllUsersInventory()
         await this.addDetailsToAllSets()
         this.configureInitialSet()
-        console.log(this.sets)
-
-
     }
 };
 </script>
