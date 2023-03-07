@@ -59,6 +59,10 @@ export default {
             }, 0);
         },
     },
+    created() {
+        console.log(this.singleSetDetails)
+        console.log("deneme")
+    }
 }
 </script>
 
