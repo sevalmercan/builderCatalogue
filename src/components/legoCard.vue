@@ -11,7 +11,7 @@
                         {{ pieceId }}
                     </div>
                     <div class="text">
-                        Piece
+                        Piece no
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@ export default {
 @import '../assets/style/color.scss';
 
 .lego-card {
-    max-width: 300px;
+    max-width: 240px;
     margin-right: 8px;
     margin-bottom: 8px;
     border-radius: 6px;
@@ -84,7 +84,7 @@ export default {
         padding: 1.5rem;
 
         .piece-id {
-            margin: auto 0;
+            margin-bottom: 1.2rem;
             display: flex;
             justify-content: center;
             -webkit-background-clip: text;
@@ -107,8 +107,8 @@ export default {
 
             .piece-img {
                 display: flex;
-                width: 38px;
-                height: 38px;
+                width: 40px;
+                height: 40px;
                 border-radius: 50%;
                 background: #d2d2e0de;
                 margin-right: 14px;
@@ -120,8 +120,6 @@ export default {
                     height: 22px;
                 }
             }
-
-
         }
 
         .color-palette {
@@ -129,6 +127,8 @@ export default {
             margin-top: 10px;
             justify-content: center;
             flex-wrap: wrap;
+            column-gap: 0.6rem;
+            row-gap: 0.6rem;
 
             .circle {
                 width: 35px;
@@ -139,8 +139,6 @@ export default {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-right: 5px;
-                margin-bottom: 5px;
             }
         }
     }

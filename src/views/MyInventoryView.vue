@@ -1,8 +1,8 @@
 <template>
     <div class="inventory">
         <div class="total-brick">
-            <div class="title">Total Brick : {{ userInventory.brickCount }} </div>
-            <div class="title"> Total Pack :{{ userInventory.collection.length }} </div>
+            <div class="title">Total Brick: {{ userInventory.brickCount }} </div>
+            <div class="title"> Total Pack: {{ userInventory.collection.length }} </div>
         </div>
         <div class="inventory-cards">
             <div v-for="piece in collection" :key="piece.pieceId">
@@ -41,7 +41,8 @@ export default {
     .total-brick {
         display: flex;
         justify-content: flex-start;
-        margin-bottom: 14px;
+        margin-bottom: 1.5rem;
+        margin-left: 4.1rem;
 
         .title {
             color: $primar-text-color !important;
@@ -53,7 +54,9 @@ export default {
     .inventory-cards {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: center;
+        column-gap: 1.1rem;
+        row-gap: 1.1rem;
     }
 
 }
