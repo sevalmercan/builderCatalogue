@@ -3,11 +3,8 @@
     <b-switch v-model="isAvailableShown">Default</b-switch>
     <div class="content">
       <div class="lego-card-container">
-        <div v-for="singleSet in sets" :key="singleSet.id">
-          <div @click="changeSelectedSet(singleSet.id)">
-            <lego-set-card :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces" />
-          </div>
-        </div>
+        <lego-set-card v-for="singleSet in sets" :key="singleSet.id" @click.native="changeSelectedSet(singleSet.id)"
+          :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces" />
       </div>
       <div class="lego-set-details-container">
         <div class="set-title">
@@ -71,30 +68,32 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
+  margin: 0 2rem;
+  max-width: 1100px;
 
   ::v-deep .switch {
-
     margin-bottom: 15px;
   }
 
   .content {
     display: flex;
     height: 100%;
+    justify-content: space-between;
 
     .lego-card-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      width: 50%;
+      width: 60%;
       height: 100%;
       overflow: scroll;
-
-
+      max-width: 600px;
     }
 
     .lego-set-details-container {
-      width: 47%;
+      width: 40%;
       height: 100%;
+      max-width: 440px;
 
       .set-title {
         display: flex;

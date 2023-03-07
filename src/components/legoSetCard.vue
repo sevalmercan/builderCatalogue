@@ -5,14 +5,22 @@
             <img :src="getSetImage(name)" alt="Lego Set">
 
             <div class="info">
-                <div>
-                    Name : {{ name }}
+                <div class="info-wrapper">
+                    <p class="info-title">Name</p>
+                    <p class="info-result"> {{ getName(name) }} </p>
+
                 </div>
-                <div>
-                    Set Number : {{ setNumber }}
+                <div class="info-wrapper">
+                    <p class="info-title"> Set Number</p>
+                    <p class="info-result">
+                        {{ setNumber }}
+                    </p>
+
                 </div>
-                <div>
-                    Total Pieces: {{ totalPieces }}
+                <div class="info-wrapper">
+                    <p class="info-title"> Total Pieces</p>
+                    <p class="info-result"> {{ totalPieces }}</p>
+
                 </div>
             </div>
 
@@ -23,8 +31,10 @@
 </template>
   
 <script>
+import legoMixin from '@/common/legoMixin.vue';
 
 export default {
+    mixins: [legoMixin],
     props: {
         name: String,
         setNumber: String,
@@ -47,33 +57,49 @@ export default {
 .set-card-wrapper {
     color: $primar-text-color;
     width: 100%;
-    font-weight: bold;
 
     .lego-set-card {
 
         margin-right: 8px;
-        margin-bottom: 8px;
+        margin-bottom: 1.2rem;
         border-radius: 6px;
         overflow: hidden;
         color: $primar-text-color;
-        border: $button-bg solid;
-        height: 165px;
+        border: $border-bg solid;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
         min-width: 430px;
+        padding: 2rem;
+        align-items: center;
 
         img {
-            width: auto;
-            height: auto;
-            margin: 5px;
-            border-radius: 15px;
+            width: 230px;
+            object-fit: contain;
         }
 
         .info {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
+            width: 230px;
+
+            .info-wrapper {
+                margin-bottom: 15px;
+                border-bottom: $border-bg solid;
+
+                .info-title {
+                    color: #B2B2B2;
+                    font-size: 1rem;
+                    margin-bottom: 0.85rem;
+                }
+
+                .info-result {
+                    font-size: 1.12rem;
+                    padding-bottom: 10px;
+                }
+            }
+
         }
 
     }

@@ -18,8 +18,10 @@
 </template>
 
 <script>
+import legoMixin from '@/common/legoMixin.vue';
 
 export default {
+    mixins: [legoMixin],
     props: {
         otherUserInfo: Array
     },
@@ -28,14 +30,6 @@ export default {
             isModalActive: false
         }
     },
-    methods: {
-        getName(name) {
-            // regEx : split the string from '-' and '_' characthers
-            // and make uppercase first letter of each word 
-            return name.split(/[-_]+/).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
-        }
-
-    }
 }
 </script>
 

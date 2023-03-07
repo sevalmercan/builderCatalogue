@@ -109,9 +109,12 @@ export default {
         configureInitialSet() {
             legoStore.setDetails = this.sets[0].setDetails
             this.selectedSetName = this.sets[0].name
+        },
+        getName(name) {
+            // regEx : split the string from '-' and '_' characthers
+            // and make uppercase first letter of each word 
+            return name.split(/[-_]+/).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
         }
-
-
     },
     computed: {
         userInventory() {
