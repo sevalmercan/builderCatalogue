@@ -57,6 +57,7 @@ export default {
 .set-card-wrapper {
     color: $primar-text-color;
     width: 100%;
+    cursor: pointer;
 
     .lego-set-card {
 
@@ -72,6 +73,10 @@ export default {
         min-width: 430px;
         padding: 2rem;
         align-items: center;
+
+        &:hover {
+            box-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
+        }
 
         img {
             width: 230px;

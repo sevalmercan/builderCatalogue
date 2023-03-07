@@ -8,7 +8,7 @@
       </div>
       <div class="lego-set-details-container">
         <div class="set-title">
-          {{ selectedSetName }}
+          Pieces for "{{ getName(selectedSetName) }}"
         </div>
         <div class="set-details-wrapper">
           <lego-set-details :singleSetDetails="setDetails" />
@@ -99,14 +99,13 @@ export default {
         display: flex;
         justify-content: center;
         color: $primar-text-color;
-        font-size: 29px;
-        margin-bottom: 16px;
-        line-height: 33px;
+        margin-bottom: 0.7rem;
+        font-size: 1.1rem;
       }
 
       .set-details-wrapper {
         height: 100%;
-        border: $button-bg solid;
+        border: $border-bg solid;
         overflow: scroll;
       }
 
