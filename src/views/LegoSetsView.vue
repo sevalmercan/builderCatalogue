@@ -68,7 +68,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  margin: 0 2rem;
+  margin: 0 auto;
   max-width: 1100px;
 
   ::v-deep .switch {
