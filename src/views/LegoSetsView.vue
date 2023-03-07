@@ -36,8 +36,11 @@ export default {
   data() {
     return {
       isAvailableShown: false,
-      selectedSetName: "",
+      selectedSetName: ""
     }
+  },
+  created() {
+    this.selectedSetName = this.sets[0].name;
   },
   watch: {
     isAvailableShown(switchStatus) {
