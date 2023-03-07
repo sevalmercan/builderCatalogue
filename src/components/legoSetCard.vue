@@ -2,7 +2,7 @@
     <div class="set-card-wrapper">
         <div class="lego-set-card">
 
-            <img src="../assets/images/legoset.jpg" alt="Lego Set">
+            <img :src="getSetImage(name)" alt="Lego Set">
 
             <div class="info">
                 <div>
@@ -29,6 +29,11 @@ export default {
         name: String,
         setNumber: String,
         totalPieces: Number
+    },
+    methods: {
+        getSetImage(setName) {
+            return require(`../assets/images/setImages/${setName}.png`)
+        }
     }
 }
 </script>

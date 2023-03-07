@@ -20,7 +20,6 @@ import legoMixin from '@/common/legoMixin.vue';
 export default {
     name: "HomeView",
     mixins: [legoMixin],
-
     components: {
         navBar
     },
