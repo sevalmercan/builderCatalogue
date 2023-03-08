@@ -10,7 +10,7 @@
                     color no : {{ variant.colorNo }}
                 </div>
                 <div>
-                    min requiremnt : {{ variant.minRequirement }}
+                    min requirement : {{ variant.minRequirement }}
                 </div>
 
             </div>

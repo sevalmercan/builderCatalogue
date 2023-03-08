@@ -14,14 +14,28 @@
                 <div class="single-brick">
                     <div class="piece-statistics" v-for="pieceStatistic in set.variants" :key="pieceStatistic.color">
                         <div class="piece-result">
-                            <div class="circle" :style="{ 'background': getColor(pieceStatistic.color) }">
-                                {{ pieceStatistic.count }}
+                            <div class="statistic-wrapper">
+
+                                <span class="circle" :style="{ 'background': getColor(pieceStatistic.color) }">
+                                    {{ pieceStatistic.count }}
+                                </span>
+                                <span>
+                                    {{ getDifferrenceText(pieceStatistic.difference) }}
+                                </span>
+
                             </div>
-                            <div>
-                                {{ pieceStatistic.difference }}
-                            </div>
-                            <missing-pieces-modal v-if="pieceStatistic.otherUsers"
-                                :otherUserInfo="pieceStatistic.otherUsers" />
+                            <b-tooltip position="is-bottom" type="is-dark" append-to-body multilined>
+                                <template v-slot:content>
+                                    <section class="b-tooltips">
+                                        <div>
+                                            Show users with the piece
+                                        </div>
+                                    </section>
+                                </template>
+                                <missing-pieces-modal v-if="pieceStatistic.otherUsers"
+                                    :otherUserInfo="pieceStatistic.otherUsers" />
+                            </b-tooltip>
+
                         </div>
                     </div>
                 </div>
@@ -58,6 +72,11 @@ export default {
                 return acc
             }, 0);
         },
+        getDifferrenceText(difference) {
+            if (difference < 0) return `${difference} missing pieces`
+            if (difference > 0) return `${difference} extra pieces`
+            return difference
+        }
     },
 
 }
@@ -97,7 +116,12 @@ export default {
                 .piece-result {
                     display: flex;
                     align-items: center;
-                    justify-content: flex-start;
+                    justify-content: space-between;
+
+                    .statistic-wrapper {
+                        display: flex;
+                        align-items: center;
+                    }
 
                     .circle {
                         width: 45px;

@@ -1,9 +1,7 @@
 <template>
     <div>
-
-        <b-button type="is-warning is-light" @click="isModalActive = !isModalActive">
-            Show Other Users</b-button>
-
+        <b-icon pack="fas" icon="fa-duotone fa-eye" size="is-small" @click.native="isModalActive = !isModalActive">
+        </b-icon>
         <b-modal v-model="isModalActive">
             <div class="card">
                 <div v-for="otherUser in otherUserInfo" :key="otherUser.user">
@@ -36,8 +34,9 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/style/color.scss';
 
-::v-deep .modal-background {
-    background-color: transparent
+
+::v-deep .fas {
+    cursor: pointer;
 }
 
 ::v-deep .modal .modal-content {
@@ -47,13 +46,6 @@ export default {
 }
 
 ::v-deep .modal.is-active {
-    position: absolute;
-    height: max-content;
-    overflow: inherit;
-}
-
-::v-deep .modal-close {
-    position: absolute;
-    background-color: rgba(10, 10, 10, 0.2);
+    outline: none;
 }
 </style>
