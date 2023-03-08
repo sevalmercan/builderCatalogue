@@ -142,6 +142,9 @@ export default {
         },
         allSets() {
             return legoStore.allSets
+        },
+        customInventory() {
+            return legoStore.customInventory
         }
         , fetchDone() {
             return legoStore.fetchDone

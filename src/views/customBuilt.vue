@@ -6,37 +6,52 @@
 
 <script>
 import legoMixin from '@/common/legoMixin.vue';
+import { legoStore } from '@/common/store';
 export default {
     mixins: [legoMixin],
     mounted() {
         this.createCustomBuilt()
+        console.log(this.customInventory)
     },
     methods: {
         async createCustomBuilt() {
             await this.until(() => this.fetchDone == true);
-            const deneme = this.otherUsersInventory
-            console.log(this.userInventory)
-            console.log(deneme)
-            const otherUserInv = deneme[0]
+            const halfOfTheUsers = this.otherUsersInventory.length / 2
+
+            legoStore.customInventory = this.userInventory.collection.map(piece => {
+                const pieceID = piece.pieceId;
+                const matchedUsers = this.otherUsersInventory.map(user => {
+                    return {
+                        info: user.collection.find(
+                            otherUserPiece => otherUserPiece.pieceId === pieceID
+                        ),
+                        user: user.username
+                    }
+                })
+
+                if (!(matchedUsers.length >= halfOfTheUsers)) return
+                const matchedVariants = piece.variants.map(
+                    colorVariant => {
+                        const colorNo = colorVariant.color
+                        const matchedUserColorVariant = matchedUsers.map(matchedUser => {
+                            return {
+                                colorInfo: matchedUser.info.variants.find(variant => variant.color === colorNo),
+                                user: matchedUser.user
+                            }
+                        }).filter(matchedUser => matchedUser.colorInfo)
+
+                        if (!(matchedUserColorVariant.length >= halfOfTheUsers)) return;
+                        const minRequirement = Math.min(...matchedUserColorVariant.map(item => item.colorInfo.count));
+
+                        return { colorNo, matchedUserColorVariant, minRequirement }
 
 
-            console.log(otherUserInv)
-            // /*             this.userInventory.collection.forEach(piece => {
+                    }
+                ).filter(colorVariant => colorVariant)
 
-            //                 const pieceID = piece.pieceId;
-            //                 console.log(pieceID)
-            //                 const matchedUsers = otherUserInv.filter(user => user.collection.find(
-            //                     otherUserPiece => otherUserPiece.pieceId === pieceID
-            //                 ))
-            //                 console.log(matchedUsers)
-
-
-
-
-            //             }) */
-
+                return { matchedVariants, pieceID }
+            })
         },
-
     }
 }
 </script>
