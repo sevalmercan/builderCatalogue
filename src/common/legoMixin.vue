@@ -44,10 +44,11 @@ export default {
         },
         async getAllUsersInventory() {
             for (const user of this.allUsers) {
-                await axios
-                    .get(`https://d16m5wbro86fg2.cloudfront.net/api/user/by-id/${user.id}`)
-                    .then(response => (legoStore.otherUsersInventory.push(response.data)))
-
+                if (user.id !== this.userInventory.id) {
+                    await axios
+                        .get(`https://d16m5wbro86fg2.cloudfront.net/api/user/by-id/${user.id}`)
+                        .then(response => (legoStore.otherUsersInventory.push(response.data)))
+                }
             }
         },
         async addDetailsToAllSets() {

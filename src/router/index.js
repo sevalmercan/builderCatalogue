@@ -12,24 +12,23 @@ const routes = [
   {
     path: "/lego-sets",
     name: "lego-sets",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/LegoSetsView.vue"
-      ),
+      import("../views/LegoSetsView.vue"),
   },
   {
     path: "/my-inventory",
     name: "my-inventory",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/MyInventoryView.vue"
-      ),
+      import("../views/MyInventoryView.vue"),
+  },
+  {
+    path: "/custom-built",
+    name: "custom-built",
+
+    component: () =>
+      import("../views/customBuilt.vue"),
   },
 ];
 
