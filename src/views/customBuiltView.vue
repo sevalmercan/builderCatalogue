@@ -1,17 +1,22 @@
 <template>
     <div>
-        deneme
+        <custom-set v-for="customPieces in customInventory" :key="customPieces.pieceID" :pieceId="customPieces.pieceID"
+            :variants="customPieces.matchedVariants"></custom-set>
     </div>
 </template>
 
 <script>
 import legoMixin from '@/common/legoMixin.vue';
 import { legoStore } from '@/common/store';
+import customSet from '@/components/customSet.vue';
 export default {
     mixins: [legoMixin],
+    components: {
+        customSet
+    },
     mounted() {
         this.createCustomBuilt()
-        console.log(this.customInventory)
+
     },
     methods: {
         async createCustomBuilt() {
@@ -51,6 +56,7 @@ export default {
 
                 return { matchedVariants, pieceID }
             })
+            console.log(this.customInventory)
         },
     }
 }

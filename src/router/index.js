@@ -28,7 +28,7 @@ const routes = [
     name: "custom-built",
 
     component: () =>
-      import("../views/customBuilt.vue"),
+      import("../views/customBuiltView.vue"),
   },
 ];
 
