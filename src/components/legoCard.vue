@@ -29,7 +29,7 @@
                             </section>
 
                         </template>
-                        <div class="circle" :style="{ 'background': getColor(colorPiece.color) }">
+                        <div class="circle" :style="{ 'background': getColorRGB(colorPiece.color) }">
                             {{ colorPiece.count }}
                         </div>
                     </b-tooltip>
@@ -43,23 +43,14 @@
 </template>
 
 <script>
-import { colours } from '../common/colours'
-
+import legoMixin from '@/common/legoMixin.vue';
 export default {
+    mixins: [legoMixin],
     name: "legoCard",
     props: {
         pieceId: String,
         variants: Array
     },
-    methods: {
-        getColor(currentColorCode) {
-            return colours.find(color => color.code.toString() === currentColorCode).rgb
-        },
-        getColorName(currentColorCode) {
-            return colours.find(color => color.code.toString() === currentColorCode).name
-        }
-    }
-
 };
 </script>
 

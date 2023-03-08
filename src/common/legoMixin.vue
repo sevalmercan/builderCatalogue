@@ -2,11 +2,18 @@
 const NON_AVAILABLE = "You have none";
 const ALL_AVAILABLE = "You have all necessary pieces"
 import axios from 'axios'
+import { colours } from './colours';
 
 import { legoStore } from "./store";
 export default {
     name: "LegoMixin",
     methods: {
+        getColorName(currentColorCode) {
+            return colours.find(color => color.code.toString() === currentColorCode.toString()).name
+        },
+        getColorRGB(currentColorCode) {
+            return colours.find(color => color.code.toString() === currentColorCode.toString()).rgb
+        },
         getAllColorVariants(setDetails) {
             let setInfo = []
             for (const singleSet of setDetails) {

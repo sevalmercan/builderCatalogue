@@ -15,10 +15,19 @@
                     <div class="piece-statistics" v-for="pieceStatistic in set.variants" :key="pieceStatistic.color">
                         <div class="piece-result">
                             <div class="statistic-wrapper">
-
-                                <span class="circle" :style="{ 'background': getColor(pieceStatistic.color) }">
-                                    {{ pieceStatistic.count }}
-                                </span>
+                                <b-tooltip position="is-bottom" type="is-dark" append-to-body multilined>
+                                    <template v-slot:content>
+                                        <section class="b-tooltips">
+                                            <div>
+                                                <div> Color name: {{ getColorName(pieceStatistic.color) }}</div>
+                                                <div> Required quantity: {{ pieceStatistic.count }} </div>
+                                            </div>
+                                        </section>
+                                    </template>
+                                    <span class="circle" :style="{ 'background': getColorRGB(pieceStatistic.color) }">
+                                        {{ pieceStatistic.count }}
+                                    </span>
+                                </b-tooltip>
                                 <span>
                                     {{ getDifferrenceText(pieceStatistic.difference) }}
                                 </span>
@@ -47,7 +56,6 @@
 
 <script>
 import legoMixin from '@/common/legoMixin.vue';
-import { colours } from '@/common/colours';
 import missingPiecesModal from './missingPiecesModal.vue';
 export default {
     mixins: [legoMixin],
@@ -63,9 +71,6 @@ export default {
         singleSetDetails: Array,
     },
     methods: {
-        getColor(currentColorCode) {
-            return colours.find(color => color.code === currentColorCode).rgb
-        },
         calculateTotalBrick(variants) {
             return variants.reduce((acc, color) => {
                 acc += color.count
