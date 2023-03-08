@@ -28,9 +28,7 @@
                                         {{ pieceStatistic.count }}
                                     </span>
                                 </b-tooltip>
-                                <span>
-                                    {{ getDifferrenceText(pieceStatistic.difference) }}
-                                </span>
+                                <div v-html="getDifferrenceText(pieceStatistic.difference)"></div>
 
                             </div>
                             <b-tooltip position="is-bottom" type="is-dark" append-to-body multilined>
@@ -78,9 +76,9 @@ export default {
             }, 0);
         },
         getDifferrenceText(difference) {
-            if (difference < 0) return `${difference} missing pieces`
-            if (difference > 0) return `${difference} extra pieces`
-            return difference
+            if (difference < 0) return `<span class="is-missing-piece">${difference} missing pieces </span>`
+            if (difference > 0) return `<span class="is-extra-piece">${difference} extra pieces </span>`
+            return `<span class="is-missing-piece">${difference}</span>`
         }
     },
 
@@ -89,6 +87,14 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/style/color.scss';
+
+::v-deep .is-missing-piece {
+    color: #a21919cc
+}
+
+::v-deep .is-extra-piece {
+    color: #2d902dd4
+}
 
 .set-details {
     margin: 3px 17px;
