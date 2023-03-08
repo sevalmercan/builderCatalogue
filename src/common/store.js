@@ -6,4 +6,5 @@ export const legoStore = Vue.observable({
   allUsers: [],
   otherUsersInventory: [],
   allSets: [],
+  fetchDone: false,
 });

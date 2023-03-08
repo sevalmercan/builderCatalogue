@@ -115,6 +115,13 @@ export default {
             // regEx : split the string from '-' and '_' characthers
             // and make uppercase first letter of each word 
             return name.split(/[-_]+/).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
+        },
+        until(conditionFunction) {
+            const poll = resolve => {
+                if (conditionFunction()) resolve();
+                else setTimeout(() => poll(resolve), 400);
+            }
+            return new Promise(poll);
         }
     },
     computed: {
@@ -135,6 +142,9 @@ export default {
         },
         allSets() {
             return legoStore.allSets
+        }
+        , fetchDone() {
+            return legoStore.fetchDone
         }
 
     },

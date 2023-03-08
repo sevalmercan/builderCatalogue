@@ -39,6 +39,7 @@ export default {
         await this.getAllUsersInventory()
         await this.addDetailsToAllSets()
         this.configureInitialSet()
+        legoStore.fetchDone = true
     }
 };
 </script>
