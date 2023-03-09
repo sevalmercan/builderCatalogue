@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="custom-view-container">
         <custom-set v-for="customPieces in customInventory" :key="customPieces.pieceID" :pieceId="customPieces.pieceID"
             :variants="customPieces.matchedVariants"></custom-set>
     </div>
@@ -61,3 +61,14 @@ export default {
     }
 }
 </script>
+
+
+<style lang="scss" scoped>
+.custom-view-container {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+    row-gap: 1rem;
+    justify-content: center;
+}
+</style>
