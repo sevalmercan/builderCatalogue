@@ -39,8 +39,9 @@
                                         </div>
                                     </section>
                                 </template>
-                                <missing-pieces-modal v-if="pieceStatistic.otherUsers"
-                                    :otherUserInfo="pieceStatistic.otherUsers" />
+                                <missing-pieces-modal v-if="pieceStatistic.otherUsers" :color="pieceStatistic.color"
+                                    :requiredQuantity="pieceStatistic.count" :otherUserInfo="pieceStatistic.otherUsers"
+                                    :pieceNo="set.designID" />
                             </b-tooltip>
 
                         </div>

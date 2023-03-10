@@ -4,8 +4,13 @@
         </b-icon>
         <b-modal v-model="isModalActive">
             <div class="card">
-                <div v-for="otherUser in otherUserInfo" :key="otherUser.user">
-                    <div>
+                <p class="piece-no">Piece no: {{ pieceNo }} </p>
+                <div class="color-info">
+                    <div> Color name: {{ getColorName(color) }}</div>
+                    <div> Required quantity: {{ requiredQuantity }} </div>
+                </div>
+                <div class="other-users-wrapper">
+                    <div v-for="otherUser in otherUserInfo" :key="otherUser.user">
                         {{ getName(otherUser.user) }}
                         {{ otherUser.count }}
                     </div>
@@ -21,7 +26,11 @@ import legoMixin from '@/common/legoMixin.vue';
 export default {
     mixins: [legoMixin],
     props: {
-        otherUserInfo: Array
+        otherUserInfo: Array,
+        color: Number,
+        requiredQuantity: Number,
+        pieceNo: String
+
     },
     data() {
         return {
@@ -34,15 +43,39 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/style/color.scss';
 
+.color-info {
+    display: flex;
+    justify-content: center;
+    column-gap: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+.other-users-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+}
+
+::v-deep .card {
+    padding: 2rem;
+    background: inherit;
+}
+
+.piece-no {
+    display: flex;
+    justify-content: center;
+}
 
 ::v-deep .fas {
     cursor: pointer;
 }
 
 ::v-deep .modal .modal-content {
-    width: 250px;
-    border: $button-bg solid;
+    width: 50%;
+    border: $border-bg solid;
     color: $primar-text-color;
+    background-color: $main-page-bg;
 }
 
 ::v-deep .modal.is-active {
