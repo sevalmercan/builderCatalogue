@@ -85,6 +85,10 @@ export default {
     font-size: 1rem;
 }
 
+::v-deep .table {
+    background-color: $main-page-bg;
+}
+
 ::v-deep .card {
     padding: 2rem;
     background: inherit;
