@@ -94,12 +94,12 @@ export default {
 
                         let foundPiece = otherUserMatchedPiece.count
                         if (variant['otherUsers']) {
-                            variant.otherUsers.push({ user: user.username, count: foundPiece })
+                            variant.otherUsers.push({ user: user.username, count: foundPiece, location: user.location })
                             return;
                         }
                         variant = {
                             ...missingVariant,
-                            otherUsers: [{ user: user.username, count: foundPiece }]
+                            otherUsers: [{ user: user.username, count: foundPiece, location: user.location }]
                         }
                     })
                     return variant

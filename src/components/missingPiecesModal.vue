@@ -10,10 +10,7 @@
                     <div> Required quantity: {{ requiredQuantity }} </div>
                 </div>
                 <div class="other-users-wrapper">
-                    <div v-for="otherUser in otherUserInfo" :key="otherUser.user">
-                        {{ getName(otherUser.user) }}
-                        {{ otherUser.count }}
-                    </div>
+                    <b-table :data="data" :columns="columns"></b-table>
                 </div>
             </div>
         </b-modal>
@@ -34,9 +31,40 @@ export default {
     },
     data() {
         return {
-            isModalActive: false
+            isModalActive: false,
+            data: [],
+            columns: [
+                {
+                    field: 'username',
+                    label: 'Username',
+                },
+                {
+                    field: 'quantity',
+                    label: 'Quantity',
+                    centered: true
+                },
+                {
+                    field: 'location',
+                    label: 'Location',
+                }
+            ]
         }
     },
+    created() {
+        this.createUserInfoTable()
+    },
+    methods: {
+        createUserInfoTable() {
+            this.data = this.otherUserInfo.map(otherUser => {
+                return {
+                    'username': this.getName(otherUser.user),
+                    'quantity': otherUser.count,
+                    'location': otherUser.location
+                }
+            }
+            )
+        }
+    }
 }
 </script>
 

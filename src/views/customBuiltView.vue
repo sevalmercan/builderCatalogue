@@ -56,7 +56,6 @@ export default {
 
                 return { matchedVariants, pieceID }
             })
-            console.log(this.customInventory)
         },
     }
 }
