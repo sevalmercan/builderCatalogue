@@ -129,6 +129,10 @@ export default {
                 else setTimeout(() => poll(resolve), 400);
             }
             return new Promise(poll);
+        },
+        currentRoute() {
+
+            return this.$route.path
         }
     },
     computed: {

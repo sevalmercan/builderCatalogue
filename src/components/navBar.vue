@@ -5,22 +5,23 @@
                 <img src="../assets/images/brick-logo.png" alt="Lego Logo">
             </b-navbar-item>
         </template>
+
         <template #start>
             <router-link to="/my-inventory">
                 <b-navbar-item>
-                    <b-button rounded outlined size="is-small">
+                    <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === '/my-inventory' }">
                         <b-icon class="nav-icon" pack="fas" icon="fa-sharp fa-solid fa-briefcase" size="is-small">
                         </b-icon> My Inventory</b-button>
                 </b-navbar-item>
             </router-link>
             <router-link to="/lego-sets"> <b-navbar-item>
-                    <b-button rounded outlined size="is-small">
+                    <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === '/lego-sets' }">
                         <b-icon class="nav-icon" pack="fas" icon="fas fa-th-list" size="is-small" />
                         Collections
                     </b-button>
                 </b-navbar-item></router-link>
             <router-link to="/custom-built"> <b-navbar-item>
-                    <b-button rounded outlined size="is-small">
+                    <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === '/custom-built' }">
                         <b-icon class="nav-icon" pack="fas" icon="fas fa-th-list" size="is-small" />
                         Custom Built
                     </b-button>
@@ -30,8 +31,9 @@
 </template>
   
 <script>
-
+import legoMixin from '@/common/legoMixin.vue';
 export default {
+    mixins: [legoMixin],
     name: "navBar",
 };
 </script>
@@ -44,6 +46,10 @@ export default {
     padding: 0 30px !important;
     color: $primar-text-color;
     margin-top: 15px;
+
+    .active {
+        background-color: $button-bg !important;
+    }
 
     .nav-icon {
         margin-right: 0.1rem !important;
