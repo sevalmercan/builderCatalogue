@@ -1,7 +1,7 @@
 <template>
     <div class="custom-view-container">
-        <custom-set v-for="customPieces in customInventory" :key="customPieces.pieceID" :pieceId="customPieces.pieceID"
-            :variants="customPieces.matchedVariants"></custom-set>
+        <!--    <custom-set v-for="customPieces in customInventory" :key="customPieces.pieceID" :pieceId="customPieces.pieceID"
+            :variants="customPieces.matchedVariants"></custom-set> -->
     </div>
 </template>
 
@@ -21,9 +21,16 @@ export default {
     methods: {
         async createCustomBuilt() {
             await this.until(() => this.fetchDone == true);
-            const halfOfTheUsers = this.otherUsersInventory.length / 2
+            const halfOfTheUsers = Math.ceil(this.otherUsersInventory.length / 2)
 
-            legoStore.customInventory = this.userInventory.collection.map(piece => {
+            console.log(halfOfTheUsers)
+            const usernames = this.otherUsersInventory.map(user => user.username)
+
+            // [ ["arts-n-bricks","captain-pieces","dr_crocodile","green-bricks-only","landscape-artist"], ... ]
+            const allUsernameCombinations = this.choose(usernames, halfOfTheUsers)
+
+
+            const usersWithMatchedColorVariants = this.userInventory.collection.map(piece => {
                 const pieceID = piece.pieceId;
                 const matchedUsers = this.otherUsersInventory.map(user => {
                     return {
@@ -33,8 +40,6 @@ export default {
                         user: user.username
                     }
                 })
-
-                if (!(matchedUsers.length >= halfOfTheUsers)) return
                 const matchedVariants = piece.variants.map(
                     colorVariant => {
                         const colorNo = colorVariant.color
@@ -46,17 +51,65 @@ export default {
                         }).filter(matchedUser => matchedUser.colorInfo)
 
                         if (!(matchedUserColorVariant.length >= halfOfTheUsers)) return;
-                        const minRequirement = Math.min(...matchedUserColorVariant.map(item => item.colorInfo.count));
 
-                        return { colorNo, matchedUserColorVariant, minRequirement }
+                        matchedUserColorVariant.sort((a, b) => b.colorInfo.count - a.colorInfo.count)
+                        return { colorNo, matchedUserColorVariant }
 
 
                     }
                 ).filter(colorVariant => colorVariant)
-
                 return { matchedVariants, pieceID }
             })
+            console.log(usersWithMatchedColorVariants)
+
+            console.log(allUsernameCombinations)
+
+            const x = allUsernameCombinations.map(usernamesWihtCombination => {
+                let sumOfBricks = 0
+                const matchedPiecesWithCombination = usersWithMatchedColorVariants.map(({ matchedVariants, pieceID }) => {
+
+                    const matchedColorsWithCombination = matchedVariants.map(({ colorNo, matchedUserColorVariant }) => {
+                        const matchedUsersWithColor = matchedUserColorVariant.map(colorWithMatchedUser =>
+                            colorWithMatchedUser.user
+                        )
+
+                        const areAllNamesIncluded = usernamesWihtCombination.every(username => matchedUsersWithColor.includes(username))
+                        if (!areAllNamesIncluded) return
+
+
+                        const lastElementInfoOfNamesCombination = matchedUserColorVariant.filter(({ colorInfo, user }) =>
+                            usernamesWihtCombination.includes(user)
+                        ).pop()
+
+                        const indexOfMatchedNameWithCombination = matchedUserColorVariant.findIndex(({ colorInfo, user }) =>
+                            user === lastElementInfoOfNamesCombination.user
+                        )
+                        const matchUsersWithCombination = matchedUserColorVariant.slice(0, indexOfMatchedNameWithCombination)
+
+                        const minRequirementForColor = matchUsersWithCombination[matchUsersWithCombination.length - 1].colorInfo.count
+                        sumOfBricks += minRequirementForColor
+                        return { colorNo, minRequirementForColor, matchUsersWithCombination }
+
+                    })
+                    if (!matchedColorsWithCombination) return
+
+                    return { pieceID, matchedColorsWithCombination }
+                })
+                if (!matchedPiecesWithCombination) return
+
+                return { matchedPiecesWithCombination, sumOfBricks }
+            })
+
+            console.log(x)
+
         },
+        choose(arr, k, prefix = []) {
+            if (k == 0) return [prefix];
+            return arr.flatMap((v, i) =>
+                this.choose(arr.slice(i + 1), k - 1, [...prefix, v])
+            );
+        }
+
     }
 }
 </script>
