@@ -23,7 +23,6 @@ export default {
             await this.until(() => this.fetchDone == true);
             const halfOfTheUsers = Math.ceil(this.otherUsersInventory.length / 2)
 
-            console.log(halfOfTheUsers)
             const usernames = this.otherUsersInventory.map(user => user.username)
 
             // [ ["arts-n-bricks","captain-pieces","dr_crocodile","green-bricks-only","landscape-artist"], ... ]
@@ -60,11 +59,8 @@ export default {
                 ).filter(colorVariant => colorVariant)
                 return { matchedVariants, pieceID }
             })
-            console.log(usersWithMatchedColorVariants)
 
-            console.log(allUsernameCombinations)
-
-            const x = allUsernameCombinations.map(usernamesWihtCombination => {
+            legoStore.customInventory = allUsernameCombinations.map(usernamesWihtCombination => {
                 let sumOfBricks = 0
                 const matchedPiecesWithCombination = usersWithMatchedColorVariants.map(({ matchedVariants, pieceID }) => {
 
@@ -75,8 +71,6 @@ export default {
 
                         const areAllNamesIncluded = usernamesWihtCombination.every(username => matchedUsersWithColor.includes(username))
                         if (!areAllNamesIncluded) return
-
-
                         const lastElementInfoOfNamesCombination = matchedUserColorVariant.filter(({ colorInfo, user }) =>
                             usernamesWihtCombination.includes(user)
                         ).pop()
@@ -90,18 +84,15 @@ export default {
                         sumOfBricks += minRequirementForColor
                         return { colorNo, minRequirementForColor, matchUsersWithCombination }
 
-                    })
+                    }).filter(matchedColorVariants => matchedColorVariants)
                     if (!matchedColorsWithCombination) return
 
                     return { pieceID, matchedColorsWithCombination }
                 })
                 if (!matchedPiecesWithCombination) return
 
-                return { matchedPiecesWithCombination, sumOfBricks }
-            })
-
-            console.log(x)
-
+                return { matchedPiecesWithCombination, sumOfBricks, usernamesWihtCombination }
+            }).sort((a, b) => b.sumOfBricks - a.sumOfBricks)
         },
         choose(arr, k, prefix = []) {
             if (k == 0) return [prefix];
