@@ -21,13 +21,15 @@
                             <section class="b-tooltips">
                                 <div>
                                     <div> Color name: {{ getColorName(variant.colorNo) }}</div>
-                                    <div> Required quantity: {{ variant.minRequirement }} </div>
+                                    <div> Required quantity: {{ variant.minRequirementForColor
+                                    }} </div>
                                 </div>
                             </section>
 
                         </template>
                         <div class="circle" :style="{ 'background': getColorRGB(variant.colorNo) }">
-                            {{ variant.minRequirement }}
+                            {{ variant.minRequirementForColor
+                            }}
                         </div>
                     </b-tooltip>
                 </div>

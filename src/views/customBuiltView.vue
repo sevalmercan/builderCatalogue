@@ -1,7 +1,27 @@
 <template>
     <div class="custom-view-container">
-        <!--    <custom-set v-for="customPieces in customInventory" :key="customPieces.pieceID" :pieceId="customPieces.pieceID"
-            :variants="customPieces.matchedVariants"></custom-set> -->
+        <div>
+            <div class="set-info">
+                <p> Total bricks for custom set: {{ highestBrickSet.sumOfBricks }}</p>
+                <p> Targeted users percentage: %{{ percentageOfUsers }}</p>
+            </div>
+
+            <div class="usernames">
+                <div v-for="username in highestBrickSet.usernamesWihtCombination" :key="username" class="username-wrapper">
+                    <b-icon class="nav-icon" pack="fas" icon="fas fa-user" size="is-small"> </b-icon>
+                    <p> {{ getName(username) }} </p>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="set-pieces-wrapper">
+            <custom-set v-for="customPieces in highestBrickSet.matchedPiecesWithCombination" :key="customPieces.pieceID"
+                :pieceId="customPieces.pieceID" :variants="customPieces.matchedColorsWithCombination">
+            </custom-set>
+        </div>
+
+
     </div>
 </template>
 
@@ -14,13 +34,20 @@ export default {
     components: {
         customSet
     },
-    mounted() {
-        this.createCustomBuilt()
-
+    data() {
+        return {
+            highestBrickSet: [],
+            percentageOfUsers: ''
+        }
+    },
+    async mounted() {
+        await this.createCustomBuilt()
+        this.highestBrickSet = this.customInventory[0]
     },
     methods: {
         async createCustomBuilt() {
             await this.until(() => this.fetchDone == true);
+            this.percentageOfUsers = Math.ceil(this.otherUsersInventory.length / 2) * 100 / this.otherUsersInventory.length
             const halfOfTheUsers = Math.ceil(this.otherUsersInventory.length / 2)
 
             const usernames = this.otherUsersInventory.map(user => user.username)
@@ -71,11 +98,11 @@ export default {
 
                         const areAllNamesIncluded = usernamesWihtCombination.every(username => matchedUsersWithColor.includes(username))
                         if (!areAllNamesIncluded) return
-                        const lastElementInfoOfNamesCombination = matchedUserColorVariant.filter(({ colorInfo, user }) =>
+                        const lastElementInfoOfNamesCombination = matchedUserColorVariant.filter(({ user }) =>
                             usernamesWihtCombination.includes(user)
                         ).pop()
 
-                        const indexOfMatchedNameWithCombination = matchedUserColorVariant.findIndex(({ colorInfo, user }) =>
+                        const indexOfMatchedNameWithCombination = matchedUserColorVariant.findIndex(({ user }) =>
                             user === lastElementInfoOfNamesCombination.user
                         )
                         const matchUsersWithCombination = matchedUserColorVariant.slice(0, indexOfMatchedNameWithCombination)
@@ -93,6 +120,7 @@ export default {
 
                 return { matchedPiecesWithCombination, sumOfBricks, usernamesWihtCombination }
             }).sort((a, b) => b.sumOfBricks - a.sumOfBricks)
+            console.log(this.customInventory)
         },
         choose(arr, k, prefix = []) {
             if (k == 0) return [prefix];
@@ -107,11 +135,49 @@ export default {
 
 
 <style lang="scss" scoped>
+@import '../assets/style/color.scss';
+
+::v-deep .icon.is-small {
+    font-size: 0.8rem;
+}
+
 .custom-view-container {
     display: flex;
-    flex-wrap: wrap;
-    column-gap: 2rem;
-    row-gap: 1rem;
+    flex-direction: column;
     justify-content: center;
+
+    .set-info {
+        display: flex;
+        column-gap: 1rem;
+        justify-content: center;
+    }
+
+    .usernames {
+        display: flex;
+        justify-content: center;
+        column-gap: 1rem;
+        margin-bottom: 1rem;
+
+        .username-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 0.3rem;
+            border: $border-bg solid;
+            border-radius: 11px;
+            padding: 0.3rem 0.5rem;
+            font-size: 0.9rem;
+        }
+    }
+
+
+    .set-pieces-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 2rem;
+        row-gap: 1rem;
+        justify-content: center;
+
+    }
 }
 </style>
