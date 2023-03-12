@@ -50,13 +50,15 @@ export default {
             return result === 0 ? ALL_AVAILABLE : result
         },
         async getAllUsersInventory() {
+            const allUsers = []
             for (const user of this.allUsers) {
                 if (user.id !== this.userInventory.id) {
                     await axios
                         .get(`https://d16m5wbro86fg2.cloudfront.net/api/user/by-id/${user.id}`)
-                        .then(response => (legoStore.otherUsersInventory.push(response.data)))
+                        .then(response => (allUsers.push(response.data)))
                 }
             }
+            legoStore.otherUsersInventory = allUsers
         },
         async addDetailsToAllSets() {
             for (let set of this.sets) {
