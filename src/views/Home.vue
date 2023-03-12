@@ -1,8 +1,10 @@
 <template>
     <div class="layout">
+        <b-loading :is-full-page="true" v-model="isLoading" :can-cancel="true"></b-loading>
+
         <div class="main-page">
             <nav-bar />
-            <div class="content" v-if="fetchDone">
+            <div class="content" v-if="!isLoading">
                 <router-view />
             </div>
         </div>
@@ -20,11 +22,15 @@ import legoMixin from '@/common/legoMixin.vue';
 export default {
     name: "HomeView",
     mixins: [legoMixin],
+    data() {
+        return {
+            isLoading: true
+        }
+    },
     components: {
         navBar
     },
     async mounted() {
-
         const currentUserId = localStorage.getItem('userId')
 
         axios
@@ -42,7 +48,7 @@ export default {
         await this.getAllUsersInventory()
         await this.addDetailsToAllSets()
         this.configureInitialSet()
-        legoStore.fetchDone = true
+        this.isLoading = false
     }
 };
 </script>

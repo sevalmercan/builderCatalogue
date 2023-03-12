@@ -125,13 +125,6 @@ export default {
             // and make uppercase first letter of each word 
             return name.split(/[-_]+/).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
         },
-        until(conditionFunction) {
-            const poll = resolve => {
-                if (conditionFunction()) resolve();
-                else setTimeout(() => poll(resolve), 400);
-            }
-            return new Promise(poll);
-        },
         currentRoute() {
             return this.$route.path.split('/')[2]
         }
@@ -158,10 +151,6 @@ export default {
         customInventory() {
             return legoStore.customInventory
         }
-        , fetchDone() {
-            return legoStore.fetchDone
-        }
-
     },
 };
 </script>

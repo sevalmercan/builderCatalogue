@@ -48,12 +48,11 @@ export default {
         }
     },
     async mounted() {
-        await this.createCustomBuild()
+        this.createCustomBuild()
         this.highestBrickSet = this.customInventory[0]
     },
     methods: {
-        async createCustomBuild() {
-            await this.until(() => this.fetchDone == true);
+        createCustomBuild() {
             this.percentageOfUsers = Math.ceil(this.otherUsersInventory.length / 2) * 100 / this.otherUsersInventory.length
             const halfOfTheUsers = Math.ceil(this.otherUsersInventory.length / 2)
 
