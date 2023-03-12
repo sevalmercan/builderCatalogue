@@ -9,19 +9,19 @@
         <template #start>
             <router-link to="my-inventory">
                 <b-navbar-item>
-                    <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === '/my-inventory' }">
+                    <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === 'my-inventory' }">
                         <b-icon class="nav-icon" pack="fas" icon="fa-sharp fa-solid fa-briefcase" size="is-small">
                         </b-icon> My Inventory</b-button>
                 </b-navbar-item>
             </router-link>
             <router-link to="lego-sets"> <b-navbar-item>
-                    <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === '/lego-sets' }">
+                    <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === 'lego-sets' }">
                         <b-icon class="nav-icon" pack="fas" icon="fas fa-th-list" size="is-small" />
                         Collections
                     </b-button>
                 </b-navbar-item></router-link>
             <router-link to="custom-build"> <b-navbar-item>
-                    <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === '/custom-built' }">
+                    <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === 'custom-built' }">
                         <b-icon class="nav-icon" pack="fas" icon="fas fa-th-list" size="is-small" />
                         Custom Build
                     </b-button>

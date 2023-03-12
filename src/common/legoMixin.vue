@@ -133,8 +133,7 @@ export default {
             return new Promise(poll);
         },
         currentRoute() {
-
-            return this.$route.path
+            return this.$route.path.split('/')[2]
         }
     },
     computed: {

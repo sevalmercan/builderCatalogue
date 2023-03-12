@@ -127,7 +127,6 @@ export default {
 
                 return { matchedPiecesWithCombination, sumOfBricks, usernamesWihtCombination }
             }).sort((a, b) => b.sumOfBricks - a.sumOfBricks)
-            console.log(this.customInventory)
         },
         choose(arr, k, prefix = []) {
             if (k == 0) return [prefix];
