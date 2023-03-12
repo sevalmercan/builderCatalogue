@@ -34,7 +34,7 @@ export default {
         redirectToHome(username) {
             const userId = this.users.find(user => user.username === username).id
             localStorage.setItem('userId', userId)
-            this.$router.push({ name: `my-inventory` })
+            this.$router.push({ name: `my-inventory`, params: { username } })
         }
     }
 }
