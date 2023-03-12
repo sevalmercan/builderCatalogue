@@ -1,34 +1,40 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
+import Login from "../views/LoginView.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    redirect: { name: "my-inventory" },
+    name: "Login",
+    component: Login,
   },
   {
-    path: "/lego-sets",
-    name: "lego-sets",
-
-    component: () =>
-      import("../views/LegoSetsView.vue"),
-  },
-  {
-    path: "/my-inventory",
-    name: "my-inventory",
-
-    component: () =>
-      import("../views/MyInventoryView.vue"),
-  },
-  {
-    path: "/custom-build",
-    name: "custom-build",
-
-    component: () =>
-      import("../views/customBuildView.vue"),
+    path: "/:username",
+    name: "Home",
+    component: Home,
+    children: [
+      {
+        path: "my-inventory",
+        name: "my-inventory",
+        component: () =>
+          import("../views/MyInventoryView.vue"),
+      },
+      {
+        path: "lego-sets",
+        name: "lego-sets",
+        component: () =>
+          import("../views/LegoSetsView.vue"),
+      },
+      {
+        path: "custom-build",
+        name: "custom-build",
+        component: () =>
+          import("../views/customBuildView.vue"),
+      },
+    ],
   },
 ];
 
