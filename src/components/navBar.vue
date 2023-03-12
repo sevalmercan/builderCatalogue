@@ -20,7 +20,7 @@
                         Collections
                     </b-button>
                 </b-navbar-item></router-link>
-            <router-link to="/custom-built"> <b-navbar-item>
+            <router-link to="/custom-build"> <b-navbar-item>
                     <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === '/custom-built' }">
                         <b-icon class="nav-icon" pack="fas" icon="fas fa-th-list" size="is-small" />
                         Custom Built

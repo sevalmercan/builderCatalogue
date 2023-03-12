@@ -61,12 +61,9 @@ export default {
 
 .lego-card {
     max-width: 240px;
-    margin-right: 8px;
-    margin-bottom: 8px;
     border-radius: 6px;
     overflow: hidden;
     color: $primar-text-color;
-
 
     .card-info {
         font-family: 'Roboto', sans-serif;

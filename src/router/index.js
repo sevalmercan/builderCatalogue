@@ -24,11 +24,11 @@ const routes = [
       import("../views/MyInventoryView.vue"),
   },
   {
-    path: "/custom-built",
-    name: "custom-built",
+    path: "/custom-build",
+    name: "custom-build",
 
     component: () =>
-      import("../views/customBuiltView.vue"),
+      import("../views/customBuildView.vue"),
   },
 ];
 

@@ -2,8 +2,15 @@
     <div class="custom-view-container">
         <div>
             <div class="set-info">
-                <p> Total bricks for custom set: {{ highestBrickSet.sumOfBricks }}</p>
-                <p> Targeted users percentage: %{{ percentageOfUsers }}</p>
+                <div class="info-wrapper">
+                    <b-icon class="nav-icon" pack="fas" icon="fal fa-puzzle-piece" size="is-small"> </b-icon>
+                    <p> Total bricks for custom set: {{ highestBrickSet.sumOfBricks }}</p>
+                </div>
+
+                <div class="info-wrapper">
+                    <b-icon class="nav-icon" pack="fas" icon="fas fa-percentage" size="is-small"> </b-icon>
+                    <p> Targeted users percentage: %{{ percentageOfUsers }}</p>
+                </div>
             </div>
 
             <div class="usernames">
@@ -41,11 +48,11 @@ export default {
         }
     },
     async mounted() {
-        await this.createCustomBuilt()
+        await this.createCustomBuild()
         this.highestBrickSet = this.customInventory[0]
     },
     methods: {
-        async createCustomBuilt() {
+        async createCustomBuild() {
             await this.until(() => this.fetchDone == true);
             this.percentageOfUsers = Math.ceil(this.otherUsersInventory.length / 2) * 100 / this.otherUsersInventory.length
             const halfOfTheUsers = Math.ceil(this.otherUsersInventory.length / 2)
@@ -150,6 +157,14 @@ export default {
         display: flex;
         column-gap: 1rem;
         justify-content: center;
+
+        .info-wrapper {
+            display: flex;
+            align-items: center;
+            column-gap: 0.3rem;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
     }
 
     .usernames {
@@ -174,8 +189,8 @@ export default {
     .set-pieces-wrapper {
         display: flex;
         flex-wrap: wrap;
-        column-gap: 2rem;
-        row-gap: 1rem;
+        column-gap: 1.1rem;
+        row-gap: 1.1rem;
         justify-content: center;
 
     }
