@@ -15,6 +15,7 @@ const routes = [
     path: "/:username",
     name: "Home",
     component: Home,
+    props: true,
     children: [
       {
         path: "my-inventory",
