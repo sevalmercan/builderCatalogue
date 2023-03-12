@@ -86,7 +86,7 @@ export default {
       justify-content: space-between;
       width: 60%;
       height: 100%;
-      overflow: scroll;
+      overflow-y: auto;
       max-width: 600px;
     }
 

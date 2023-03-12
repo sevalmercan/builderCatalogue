@@ -107,7 +107,7 @@ export default {
     color: $primar-text-color;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow-y: auto;
     height: 100%;
 
     .single-set {
