@@ -60,6 +60,7 @@ export default {
 
         .content {
             padding: 30px;
+            padding-bottom: 4.8rem;
         }
     }
 

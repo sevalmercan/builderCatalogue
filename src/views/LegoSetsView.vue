@@ -104,9 +104,8 @@ export default {
       }
 
       .set-details-wrapper {
-        height: 100%;
+        height: 92%;
         border: $border-bg solid;
-        overflow: scroll;
       }
 
     }

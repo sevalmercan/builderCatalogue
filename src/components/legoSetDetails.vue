@@ -107,6 +107,8 @@ export default {
     color: $primar-text-color;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
+    height: 100%;
 
     .single-set {
         border-bottom: $border-bg solid;
