@@ -1,10 +1,11 @@
 <template>
   <div class="lego-set">
-    <b-switch v-model="isAvailableShown">Default</b-switch>
+    <b-switch v-model="isAvailableShown">{{ switchText }}</b-switch>
     <div class="content">
       <div class="lego-card-container">
         <lego-set-card v-for="singleSet in sets" :key="singleSet.id" @click.native="changeSelectedSet(singleSet.id)"
-          :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces" />
+          :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces"
+          :isSelected="selectedSetName === singleSet.name" />
       </div>
       <div class="lego-set-details-container">
         <div class="set-title">
@@ -33,7 +34,8 @@ export default {
   data() {
     return {
       isAvailableShown: false,
-      selectedSetName: ""
+      selectedSetName: "",
+
     }
   },
   created() {
@@ -55,13 +57,19 @@ export default {
     getAvaliableSets() {
       return this.sets.filter(set => set.isAvailable)
     },
-
   },
+  computed: {
+    switchText() {
+      return !this.isAvailableShown ? 'Show available sets' : 'Show all'
+
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../assets/style/color.scss';
+
 
 .lego-set {
   display: flex;
@@ -88,6 +96,7 @@ export default {
       height: 100%;
       overflow-y: auto;
       max-width: 600px;
+      padding: 0.5rem 1rem;
     }
 
     .lego-set-details-container {

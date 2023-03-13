@@ -1,6 +1,6 @@
 <template>
     <div class="set-card-wrapper">
-        <div class="lego-set-card">
+        <div class="lego-set-card" :class="{ active: isSelected }">
 
             <img :src="getSetImage(name)" alt="Lego Set">
 
@@ -38,7 +38,8 @@ export default {
     props: {
         name: String,
         setNumber: String,
-        totalPieces: Number
+        totalPieces: Number,
+        isSelected: Boolean
     },
     methods: {
         getSetImage(setName) {
@@ -51,8 +52,11 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/style/color.scss';
 
-
-
+.active {
+    -webkit-box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.73);
+    -moz-box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.73);
+    box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.73);
+}
 
 .set-card-wrapper {
     color: $primar-text-color;
