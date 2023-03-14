@@ -53,7 +53,7 @@ export default {
 @import '../assets/style/color.scss';
 
 .active {
-    border: 2px solid #8080e9 !important;
+    border: 3px dashed #8080e9 !important;
 }
 
 .set-card-wrapper {
@@ -64,7 +64,6 @@ export default {
     .lego-set-card {
 
         margin-right: 8px;
-        margin-bottom: 1.2rem;
         border-radius: 6px;
         overflow: hidden;
         color: $primar-text-color;

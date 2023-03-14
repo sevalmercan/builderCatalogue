@@ -111,6 +111,7 @@ export default {
     flex-direction: column;
     overflow-y: auto;
     height: 100%;
+    border: #eae9ee solid;
 
     .single-set {
         border-bottom: $border-bg solid;

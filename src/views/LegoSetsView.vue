@@ -3,9 +3,11 @@
     <b-switch v-model="isAvailableShown">{{ switchText }}</b-switch>
     <div class="content">
       <div class="lego-card-container">
-        <lego-set-card v-for="singleSet in sets" :key="singleSet.id" @click.native="changeSelectedSet(singleSet.id)"
-          :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces"
-          :isSelected="selectedSetName === singleSet.name" />
+        <div class="card-wrapper">
+          <lego-set-card v-for="singleSet in sets" :key="singleSet.id" @click.native="changeSelectedSet(singleSet.id)"
+            :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces"
+            :isSelected="selectedSetName === singleSet.name" />
+        </div>
       </div>
       <div class="lego-set-details-container">
         <div class="set-title">
@@ -74,10 +76,10 @@ export default {
 .lego-set {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
+  height: 88vh;
   margin: 0 auto;
   max-width: 1100px;
+  margin-bottom: 2rem;
 
   ::v-deep .switch {
     margin-bottom: 15px;
@@ -85,18 +87,23 @@ export default {
 
   .content {
     display: flex;
-    height: 100%;
+    height: 88%;
     justify-content: space-between;
 
     .lego-card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      width: 60%;
-      height: 100%;
-      overflow-y: auto;
-      max-width: 600px;
       padding: 0.5rem 1rem;
+      width: 60%;
+
+      .card-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        height: 100%;
+        overflow-y: auto;
+        max-width: 600px;
+        row-gap: 1rem;
+
+      }
     }
 
     .lego-set-details-container {
@@ -114,7 +121,6 @@ export default {
 
       .set-details-wrapper {
         height: 92%;
-        border: $border-bg solid;
       }
 
     }
