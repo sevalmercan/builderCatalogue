@@ -1,9 +1,8 @@
 <script>
-const NON_AVAILABLE = "You have none";
-const ALL_AVAILABLE = "You have all necessary pieces"
+
 import axios from 'axios'
 import { colours } from './colours';
-
+import { NON_AVAILABLE, ALL_AVAILABLE } from './constants'
 import { legoStore } from "./store";
 export default {
     name: "LegoMixin",

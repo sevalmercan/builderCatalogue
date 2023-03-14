@@ -53,9 +53,7 @@ export default {
 @import '../assets/style/color.scss';
 
 .active {
-    -webkit-box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.73);
-    -moz-box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.73);
-    box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.73);
+    border: 2px solid #8080e9 !important;
 }
 
 .set-card-wrapper {

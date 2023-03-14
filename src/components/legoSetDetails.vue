@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { ALL_AVAILABLE } from '@/common/constants';
 import legoMixin from '@/common/legoMixin.vue';
 import missingPiecesModal from './missingPiecesModal.vue';
 export default {
@@ -79,6 +80,7 @@ export default {
         getDifferrenceText(difference) {
             if (difference < 0) return `<span class="is-missing-piece">${difference} missing pieces </span>`
             if (difference > 0) return `<span class="is-extra-piece">${difference} extra pieces </span>`
+            if (difference === ALL_AVAILABLE) return `<span class="is-extra-piece">${difference}</span>`
             return `<span class="is-missing-piece">${difference}</span>`
         }
     },
