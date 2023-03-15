@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="main-footer">
-            <img src="../assets/images/footer.png" alt="Lego Header">
+            <img src="../assets/images/footer.png" alt="Footer bricks">
         </div>
     </div>
 </template>
@@ -17,11 +17,11 @@
 
 import navBar from '@/components/navBar.vue';
 import axios from 'axios'
-import { legoStore } from "../common/store"
-import legoMixin from '@/common/legoMixin.vue';
+import { bricksStore } from "../common/store"
+import bricksMixin from '@/common/bricksMixin.vue';
 export default {
     name: "HomeView",
-    mixins: [legoMixin],
+    mixins: [bricksMixin],
     data() {
         return {
             isLoading: true
@@ -35,15 +35,15 @@ export default {
 
         axios
             .get(`https://d16m5wbro86fg2.cloudfront.net/api/user/by-id/${currentUserId}`)
-            .then(response => (legoStore.userInventory = response.data))
+            .then(response => (bricksStore.userInventory = response.data))
 
         axios
             .get('https://d16m5wbro86fg2.cloudfront.net/api/users')
-            .then(response => (legoStore.allUsers = response.data.Users))
+            .then(response => (bricksStore.allUsers = response.data.Users))
 
         await axios
             .get('https://d16m5wbro86fg2.cloudfront.net/api/sets')
-            .then(response => (legoStore.sets = response.data.Sets));
+            .then(response => (bricksStore.sets = response.data.Sets));
 
         await this.getAllUsersInventory()
         await this.addDetailsToAllSets()

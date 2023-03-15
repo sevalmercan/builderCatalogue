@@ -1,8 +1,8 @@
 <template>
     <div class="set-card-wrapper">
-        <div class="lego-set-card" :class="{ active: isSelected }">
+        <div class="bricks-set-card" :class="{ active: isSelected }">
 
-            <img :src="getSetImage(name)" alt="Lego Set">
+            <img :src="getSetImage(name)" alt="Set">
 
             <div class="info">
                 <div class="info-wrapper">
@@ -31,10 +31,10 @@
 </template>
   
 <script>
-import legoMixin from '@/common/legoMixin.vue';
+import bricksMixin from '@/common/bricksMixin.vue';
 
 export default {
-    mixins: [legoMixin],
+    mixins: [bricksMixin],
     props: {
         name: String,
         setNumber: String,
@@ -62,7 +62,7 @@ export default {
     cursor: pointer;
 
 
-    .lego-set-card {
+    .bricks-set-card {
 
         margin-right: 8px;
         border-radius: 6px;
@@ -113,7 +113,7 @@ export default {
 
     }
 
-    .lego-set-card>div {
+    .bricks-set-card>div {
         display: flex;
         justify-content: center;
     }

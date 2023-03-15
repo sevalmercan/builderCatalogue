@@ -55,10 +55,10 @@
 
 <script>
 import { ALL_AVAILABLE } from '@/common/constants';
-import legoMixin from '@/common/legoMixin.vue';
+import bricksMixin from '@/common/bricksMixin.vue';
 import missingPiecesModal from './missingPiecesModal.vue';
 export default {
-    mixins: [legoMixin],
+    mixins: [bricksMixin],
     components: {
         missingPiecesModal
     },

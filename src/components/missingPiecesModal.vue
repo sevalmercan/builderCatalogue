@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import legoMixin from '@/common/legoMixin.vue';
+import bricksMixin from '@/common/bricksMixin.vue';
 
 export default {
-    mixins: [legoMixin],
+    mixins: [bricksMixin],
     props: {
         otherUserInfo: Array,
         color: Number,

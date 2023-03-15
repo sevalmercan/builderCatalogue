@@ -3,7 +3,7 @@
         <div class="card-info">
             <div class="piece-id">
                 <div class="piece-img">
-                    <img src="../assets/images/piece-icon.png" alt="Lego Logo">
+                    <img src="../assets/images/piece-icon.png" alt="Logo">
                 </div>
                 <div class="piece-id-text">
                     <div>
@@ -42,10 +42,10 @@
 </template>
 
 <script>
-import legoMixin from '@/common/legoMixin.vue';
+import bricksMixin from '@/common/bricksMixin.vue';
 
 export default {
-    mixins: [legoMixin],
+    mixins: [bricksMixin],
     props: {
         pieceId: String,
         variants: Array

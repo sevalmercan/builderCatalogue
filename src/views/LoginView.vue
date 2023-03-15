@@ -37,9 +37,9 @@
 
 <script>
 import axios from 'axios'
-import legoMixin from '@/common/legoMixin.vue'
+import bricksMixin from '@/common/bricksMixin.vue'
 export default {
-    mixins: [legoMixin],
+    mixins: [bricksMixin],
     data() {
         return {
             users: [],

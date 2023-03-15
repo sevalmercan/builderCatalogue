@@ -1,9 +1,9 @@
 <template>
-    <div class="lego-card">
+    <div class="bricks-card">
         <div class="card-info">
             <div class="piece-id">
                 <div class="piece-img">
-                    <img src="../assets/images/piece-icon.png" alt="Lego Logo">
+                    <img src="../assets/images/piece-icon.png" alt="Logo">
 
                 </div>
                 <div class="piece-id-text">
@@ -43,10 +43,10 @@
 </template>
 
 <script>
-import legoMixin from '@/common/legoMixin.vue';
+import bricksMixin from '@/common/bricksMixin.vue';
 export default {
-    mixins: [legoMixin],
-    name: "legoCard",
+    mixins: [bricksMixin],
+    name: "bricksCard",
     props: {
         pieceId: String,
         variants: Array
@@ -59,7 +59,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Roboto:wght@500&display=swap');
 @import '../assets/style/color.scss';
 
-.lego-card {
+.bricks-card {
     max-width: 240px;
     border-radius: 6px;
     overflow: hidden;

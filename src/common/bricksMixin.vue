@@ -3,9 +3,9 @@
 import axios from 'axios'
 import { colours } from './colours';
 import { NON_AVAILABLE, ALL_AVAILABLE } from './constants'
-import { legoStore } from "./store";
+import { bricksStore } from "./store";
 export default {
-    name: "LegoMixin",
+    name: "bricksMixin",
     methods: {
         getColorName(currentColorCode) {
             return colours.find(color => color.code.toString() === currentColorCode.toString()).name
@@ -57,7 +57,7 @@ export default {
                         .then(response => (allUsers.push(response.data)))
                 }
             }
-            legoStore.otherUsersInventory = allUsers
+            bricksStore.otherUsersInventory = allUsers
         },
         async addDetailsToAllSets() {
             for (let set of this.sets) {
@@ -72,7 +72,7 @@ export default {
                 set['isAvailable'] = this.isSetAvailableForUser(setDetails)
             }
 
-            legoStore.allSets = this.sets
+            bricksStore.allSets = this.sets
         },
         compareInventoryWithOtherUsers(newArr) {
             return newArr.map(singlePiece => {
@@ -116,7 +116,7 @@ export default {
             });
         },
         configureInitialSet() {
-            legoStore.setDetails = this.sets[0].setDetails
+            bricksStore.setDetails = this.sets[0].setDetails
             this.selectedSetName = this.sets[0].name
         },
         getName(name) {
@@ -130,25 +130,25 @@ export default {
     },
     computed: {
         userInventory() {
-            return legoStore.userInventory;
+            return bricksStore.userInventory;
         },
         setDetails() {
-            return legoStore.setDetails
+            return bricksStore.setDetails
         },
         sets() {
-            return legoStore.sets
+            return bricksStore.sets
         },
         allUsers() {
-            return legoStore.allUsers
+            return bricksStore.allUsers
         }
         , otherUsersInventory() {
-            return legoStore.otherUsersInventory
+            return bricksStore.otherUsersInventory
         },
         allSets() {
-            return legoStore.allSets
+            return bricksStore.allSets
         },
         customInventory() {
-            return legoStore.customInventory
+            return bricksStore.customInventory
         }
     },
 };

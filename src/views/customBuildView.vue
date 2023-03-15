@@ -33,11 +33,11 @@
 </template>
 
 <script>
-import legoMixin from '@/common/legoMixin.vue';
-import { legoStore } from '@/common/store';
+import bricksMixin from '@/common/bricksMixin.vue';
+import { bricksStore } from '@/common/store';
 import customSet from '@/components/customSet.vue';
 export default {
-    mixins: [legoMixin],
+    mixins: [bricksMixin],
     components: {
         customSet
     },
@@ -93,7 +93,7 @@ export default {
                 return { matchedVariants, pieceID }
             })
 
-            legoStore.customInventory = allUsernameCombinations.map(usernamesWihtCombination => {
+            bricksStore.customInventory = allUsernameCombinations.map(usernamesWihtCombination => {
                 let sumOfBricks = 0
                 const matchedPiecesWithCombination = usersWithMatchedColorVariants.map(({ matchedVariants, pieceID }) => {
 

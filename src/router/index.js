@@ -24,10 +24,10 @@ const routes = [
           import("../views/MyInventoryView.vue"),
       },
       {
-        path: "lego-sets",
-        name: "lego-sets",
+        path: "bricks-sets",
+        name: "bricks-sets",
         component: () =>
-          import("../views/LegoSetsView.vue"),
+          import("../views/BricksSetsView.vue"),
       },
       {
         path: "custom-build",

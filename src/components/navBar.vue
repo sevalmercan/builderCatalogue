@@ -2,7 +2,7 @@
     <b-navbar class="main-nav">
         <template #brand>
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                <img src="../assets/images/brick-logo.png" alt="Lego Logo">
+                <img src="../assets/images/brick-logo.png" alt="Logo">
             </b-navbar-item>
         </template>
 
@@ -14,8 +14,8 @@
                         </b-icon> My Inventory</b-button>
                 </b-navbar-item>
             </router-link>
-            <router-link to="lego-sets"> <b-navbar-item>
-                    <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === 'lego-sets' }">
+            <router-link to="bricks-sets"> <b-navbar-item>
+                    <b-button rounded outlined size="is-small" :class="{ active: currentRoute() === 'bricks-sets' }">
                         <b-icon class="nav-icon" pack="fas" icon="fas fa-th-list" size="is-small" />
                         Collections
                     </b-button>
@@ -31,9 +31,9 @@
 </template>
   
 <script>
-import legoMixin from '@/common/legoMixin.vue';
+import bricksMixin from '@/common/bricksMixin.vue';
 export default {
-    mixins: [legoMixin],
+    mixins: [bricksMixin],
     name: "navBar",
 };
 </script>

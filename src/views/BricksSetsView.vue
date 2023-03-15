@@ -1,20 +1,20 @@
 <template>
-  <div class="lego-set">
+  <div class="bricks-set">
     <b-switch v-model="isAvailableShown">{{ switchText }}</b-switch>
     <div class="content">
-      <div class="lego-card-container">
+      <div class="bricks-card-container">
         <div class="card-wrapper">
-          <lego-set-card v-for="singleSet in sets" :key="singleSet.id" @click.native="changeSelectedSet(singleSet.id)"
+          <bricks-set-card v-for="singleSet in sets" :key="singleSet.id" @click.native="changeSelectedSet(singleSet.id)"
             :name="singleSet.name" :setNumber="singleSet.setNumber" :totalPieces="singleSet.totalPieces"
             :isSelected="selectedSetName === singleSet.name" />
         </div>
       </div>
-      <div class="lego-set-details-container">
+      <div class="bricks-set-details-container">
         <div class="set-title">
           Pieces for "{{ getName(selectedSetName) }}"
         </div>
         <div class="set-details-wrapper">
-          <lego-set-details :singleSetDetails="setDetails" />
+          <bricks-set-details :singleSetDetails="setDetails" />
         </div>
       </div>
     </div>
@@ -23,15 +23,15 @@
 
 <script>
 
-import legoSetCard from '@/components/legoSetCard.vue';
-import legoSetDetails from '@/components/legoSetDetails.vue';
-import { legoStore } from "../common/store"
-import legoMixin from '@/common/legoMixin.vue';
+import bricksSetCard from '@/components/bricksSetCard.vue';
+import bricksSetDetails from '@/components/bricksSetDetails.vue';
+import { bricksStore } from "../common/store"
+import bricksMixin from '@/common/bricksMixin.vue';
 export default {
-  mixins: [legoMixin],
+  mixins: [bricksMixin],
   components: {
-    legoSetCard,
-    legoSetDetails
+    bricksSetCard,
+    bricksSetDetails
   },
   data() {
     return {
@@ -45,14 +45,14 @@ export default {
   },
   watch: {
     isAvailableShown(switchStatus) {
-      legoStore.sets = switchStatus ? this.getAvaliableSets(this.sets) : this.allSets;
+      bricksStore.sets = switchStatus ? this.getAvaliableSets(this.sets) : this.allSets;
       this.configureInitialSet()
     }
   },
   methods: {
     changeSelectedSet(setId) {
       const matchedSet = this.sets.find(set => set.id === setId)
-      legoStore.setDetails = matchedSet.setDetails
+      bricksStore.setDetails = matchedSet.setDetails
       this.selectedSetName = matchedSet.name
     },
 
@@ -73,7 +73,7 @@ export default {
 @import '../assets/style/color.scss';
 
 
-.lego-set {
+.bricks-set {
   display: flex;
   flex-direction: column;
   height: 88vh;
@@ -90,7 +90,7 @@ export default {
     height: 88%;
     justify-content: space-between;
 
-    .lego-card-container {
+    .bricks-card-container {
       padding: 0.5rem 1rem;
       width: 60%;
 
@@ -106,7 +106,7 @@ export default {
       }
     }
 
-    .lego-set-details-container {
+    .bricks-set-details-container {
       width: 40%;
       height: 100%;
       max-width: 440px;

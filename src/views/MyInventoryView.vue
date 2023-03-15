@@ -6,7 +6,7 @@
         </div>
         <div class="inventory-cards">
             <div v-for="piece in collection" :key="piece.pieceId">
-                <legoCard :pieceId="piece.pieceId" :variants="piece.variants" />
+                <bricksCard :pieceId="piece.pieceId" :variants="piece.variants" />
             </div>
         </div>
 
@@ -14,14 +14,14 @@
 </template>
 <script>
 
-import legoCard from '@/components/legoCard.vue';
-import legoMixin from '@/common/legoMixin.vue';
+import bricksCard from '@/components/bricksCard.vue';
+import bricksMixin from '@/common/bricksMixin.vue';
 
 export default {
     name: "HomeView",
-    mixins: [legoMixin],
+    mixins: [bricksMixin],
     components: {
-        legoCard
+        bricksCard
     },
     computed: {
         collection() {

@@ -1,5 +1,5 @@
 import Vue from "vue";
-export const legoStore = Vue.observable({
+export const bricksStore = Vue.observable({
   userInventory: [],
   setDetails: [],
   sets: [],
