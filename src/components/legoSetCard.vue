@@ -52,8 +52,8 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/style/color.scss';
 
-::v-deep .active {
-    border: 4px dashed #8d96c4c2;
+.active {
+    border: 4px dashed #8d96c4c2 !important;
 }
 
 .set-card-wrapper {
