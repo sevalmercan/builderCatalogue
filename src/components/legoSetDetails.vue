@@ -15,7 +15,7 @@
                     <div class="piece-statistics" v-for="pieceStatistic in set.variants" :key="pieceStatistic.color">
                         <div class="piece-result">
                             <div class="statistic-wrapper">
-                                <b-tooltip position="is-bottom" type="is-dark" multilined>
+                                <b-tooltip position="is-bottom" type="is-dark" multilined append-to-body>
                                     <template v-slot:content>
                                         <section class="b-tooltips">
                                             <div>
@@ -31,7 +31,7 @@
                                 <div v-html="getDifferrenceText(pieceStatistic.difference)"></div>
 
                             </div>
-                            <b-tooltip position="is-bottom" type="is-dark" multilined>
+                            <b-tooltip position="is-bottom" type="is-dark" multilined append-to-body>
                                 <template v-slot:content>
                                     <section class="b-tooltips">
                                         <div>
@@ -91,9 +91,6 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/style/color.scss';
 
-::v-deep .tooltip-content {
-    width: auto !important;
-}
 
 ::v-deep .is-missing-piece {
     color: #a21919cc
