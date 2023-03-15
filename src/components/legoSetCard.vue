@@ -52,14 +52,15 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/style/color.scss';
 
-.active {
-    border: 3px dashed #8080e9 !important;
+::v-deep .active {
+    border: 4px dashed #8d96c4c2;
 }
 
 .set-card-wrapper {
     color: $primar-text-color;
     width: 100%;
     cursor: pointer;
+
 
     .lego-set-card {
 
@@ -74,6 +75,8 @@ export default {
         min-width: 430px;
         padding: 2rem;
         align-items: center;
+
+
 
         &:hover {
             box-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
