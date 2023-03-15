@@ -79,7 +79,6 @@ export default {
   height: 88vh;
   margin: 0 auto;
   max-width: 1100px;
-  margin-bottom: 2rem;
 
   ::v-deep .switch {
     margin-bottom: 15px;

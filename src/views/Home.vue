@@ -77,6 +77,12 @@ export default {
         position: fixed;
         bottom: -20px;
         width: 100%;
+
+        img {
+            object-fit: cover;
+            max-height: 70px;
+            width: 100%;
+        }
     }
 }
 </style>
